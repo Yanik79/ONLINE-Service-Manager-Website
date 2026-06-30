@@ -1,24 +1,24 @@
-# ONLINE Service Manager Website
+# ONLINE Service Manager Website v2
 
-Готова перша версія сайту для GitHub Pages.
+Офіційний сайт ONLINE Service Manager.
 
-## Файли
+## Оновлення v2
 
-- `index.html` — головна сторінка
-- `client.html` — кабінет клієнта / статус ремонту
-- `login.html` — кабінет користувача
-- `style.css` — дизайн
-- `script.js` — логіка переходів
+- Додано блок Beta-версії
+- Додано слоган "Створено майстром. Для майстрів."
+- Додано секцію для тестувальників
+- Покращено головну сторінку
+- Оновлено кабінет клієнта
 
-## Як викласти на GitHub Pages
+## Завантаження на GitHub
 
-1. Створи репозиторій `ONLINE-Service-Manager-Website`.
-2. Завантаж ці файли в репозиторій.
-3. Відкрий `Settings → Pages`.
-4. Source: `Deploy from a branch`.
-5. Branch: `main` / root.
-6. Save.
+Замінити файли в репозиторії:
 
-Адреса буде приблизно така:
+- index.html
+- client.html
+- login.html
+- style.css
+- script.js
+- README.md
 
-`https://Yanik79.github.io/ONLINE-Service-Manager-Website/`
+Після commit GitHub Pages автоматично оновить сайт.
