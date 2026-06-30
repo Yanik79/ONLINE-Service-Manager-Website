@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="92" viewBox="0 0 340 92">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="340" height="92" rx="18" fill="none"/>
+  <path d="M18 36 C75 5, 145 7, 204 27" fill="none" stroke="#5fb0ff" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+  <circle cx="218" cy="18" r="5" fill="none" stroke="#5fb0ff" stroke-width="3" opacity=".75"/>
+  <text x="24" y="54" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="900" fill="url(#g)" letter-spacing="2">ONLINE</text>
+  <text x="27" y="73" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="900" fill="#ffffff" letter-spacing=".8">SERVICE MANAGER</text>
+  <text x="176" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#dbeafe">Створено майстром. Для майстрів.</text>
+</svg>

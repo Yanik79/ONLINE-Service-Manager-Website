@@ -1,64 +1,159 @@
 <!doctype html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Завантажити ONLINE Service Manager</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Завантажити ONLINE Service Manager</title>
+<style>
+:root{
+  --blue:#1565C0;--blue2:#1E88E5;--side:#064f9e;--side2:#003b78;
+  --bg:#f3f6fa;--card:#ffffff;--text:#0f172a;--muted:#64748b;
+  --line:#d6e4f5;--yellow:#ffc400;--green:#2fab39;--red:#e53e3e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}
+.shell{min-height:100vh;display:grid;grid-template-columns:260px 1fr}
+.sidebar{
+  position:sticky;top:0;height:100vh;padding:18px 14px;background:linear-gradient(180deg,var(--side),var(--side2));
+  color:#eaf2ff;border-right:1px solid rgba(255,255,255,.15)
+}
+.side-logo{display:flex;align-items:center;gap:10px;padding:10px 12px 18px}
+.side-logo img{width:180px;max-width:100%}
+.side-menu{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.side-menu a{
+  min-height:54px;display:flex;align-items:center;gap:12px;padding:0 16px;border-radius:13px;
+  color:#eaf2ff;font-size:16px;font-weight:600;border:1px solid transparent
+}
+.side-menu a:hover,.side-menu a.active{background:#1976d2;border-color:rgba(255,255,255,.22);color:#fff}
+.side-bottom{position:absolute;bottom:18px;left:14px;right:14px;color:#bcd7ff;font-size:13px;line-height:1.45}
+.main{min-width:0}
+.top-strip{
+  margin:16px 16px 0;padding:18px 22px;border-radius:16px;background:linear-gradient(90deg,#1565c0,#1e88e5);
+  color:#fff;display:flex;align-items:center;justify-content:space-between;gap:18px
+}
+.top-brand{display:flex;align-items:center;gap:18px}
+.top-brand img{height:58px}
+.top-meta{display:flex;gap:18px;align-items:center;font-size:14px;color:#eaf2ff}
+.pill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:9px 13px;border-radius:12px;font-weight:800}
+.hero{padding:28px 16px 20px}
+.hero-card{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 12px 35px rgba(22,77,135,.08);
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(480px,1.25fr);gap:30px;align-items:center
+}
+.eyebrow{color:#1565c0;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:.08em;margin:0 0 10px}
+h1{font-size:clamp(42px,5vw,72px);line-height:.95;margin:0;color:#0f172a;letter-spacing:-.04em}
+h1 span{color:#1565c0}
+h2{font-size:clamp(28px,3vw,44px);line-height:1.08;margin:0 0 14px;color:#0f2d52}
+.lead{font-size:18px;line-height:1.65;color:#475569;max-width:720px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
+.btn{min-height:48px;border-radius:12px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;border:1px solid var(--line)}
+.btn.primary{background:var(--yellow);border-color:var(--yellow);color:#111}
+.btn.blue{background:#1976d2;border-color:#1976d2;color:#fff}
+.btn.light{background:#fff;color:#0f172a}
+.hero-shot{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:0 16px 46px rgba(22,77,135,.16)}
+.hero-shot img{width:100%;display:block;border-radius:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.stat{border-radius:14px;color:#fff;padding:16px;min-height:92px;display:flex;flex-direction:column;justify-content:center}
+.stat b{font-size:30px}.stat small{font-weight:800}
+.stat.blue{background:#1976d2}.stat.orange{background:#f57c00}.stat.green{background:#2fab39}.stat.purple{background:#7e57c2}
+.section{padding:28px 16px}
+.section-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 12px 35px rgba(22,77,135,.07)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;min-height:150px}
+.tile span{font-size:30px}.tile h3{margin:10px 0 8px;font-size:22px;color:#0b4ea2}.tile p{margin:0;color:#475569;line-height:1.55}
+.split{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
+.notice{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.notice code{display:block;background:#071421;color:#ffc400;border-radius:12px;padding:15px;margin-top:12px;font-weight:900}
+.pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.price{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.price.featured{border-color:#ffc400;box-shadow:0 15px 38px rgba(255,196,0,.18)}
+.price h3{font-size:26px;margin:0 0 8px;color:#0b4ea2}.price ul{padding-left:20px;color:#334155;line-height:1.9}
+.client-box{max-width:780px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px}
+.form{display:flex;gap:12px;margin:22px 0}.form input{flex:1;min-height:52px;border:1px solid var(--line);border-radius:13px;padding:0 16px;font-size:16px}
+.status{background:#f8fbff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.footer{padding:28px 16px;color:#64748b}.footer-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;justify-content:space-between;gap:20px}
+@media(max-width:1100px){
+  .shell{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.side-bottom{position:static;margin-top:18px}
+  .side-menu{display:grid;grid-template-columns:repeat(2,1fr)}
+  .hero-card,.split{grid-template-columns:1fr}.pricing,.grid,.stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  .side-menu,.pricing,.grid,.stats{grid-template-columns:1fr}.top-strip,.footer-card,.form{flex-direction:column;align-items:flex-start}.hero-card{padding:18px}.top-brand img{height:48px}
+}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="container nav">
-    <a class="brand" href="index.html"><span class="brand-icon">⚙</span><span><b>ONLINE</b><small>Service Manager</small></span></a>
-    <nav class="nav-links">
-      <a href="index.html">Головна</a>
-      <a href="index.html#features">Можливості</a>
-      <a href="download.html">Завантажити</a>
-      <a class="nav-button" href="client.html">Кабінет клієнта</a>
-    </nav>
-  </div>
+<div class="shell">
+<aside class="sidebar">
+  <div class="side-logo"><img src="online-logo.svg" alt="ONLINE Service Manager"></div>
+  <nav class="side-menu">
+    <a class="" href="index.html">⌂ Головна</a>
+    <a href="index.html#features">⚒ Можливості</a>
+    <a href="index.html#trial">🔐 Trial</a>
+    <a href="index.html#pricing">💳 Тарифи</a>
+    <a class="active" href="download.html">⬇ Завантажити</a>
+    <a class="" href="client.html">◇ Кабінет клієнта</a>
+  </nav>
+  <div class="side-bottom">ONLINE Service Manager<br>Створено майстром. Для майстрів.</div>
+</aside>
+<div class="main">
+<header class="top-strip">
+  <div class="top-brand"><img src="online-logo.svg" alt="ONLINE"><span class="pill">v0.2.12 Beta</span></div>
+  <div class="top-meta"><span>Windows 10 / 11</span><span>Trial 28 днів</span></div>
 </header>
 
 <main>
-  <section class="hero download-page">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Windows 10 / 11 · Beta</p>
-        <h1>Завантажити ONLINE Service Manager</h1>
-        <p class="lead">
-          Встановіть програму, зареєструйте майстерню, отримайте Workshop ID
-          і протестуйте повний функціонал у пробний період.
-        </p>
-        <div class="actions">
-          <a class="btn primary" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">⬇ Завантажити v0.2.12 Beta</a>
-          <a class="btn secondary" href="index.html#trial">Про Trial</a>
-        </div>
-        <div class="download-info">
-          <span>Версія: <b>0.2.12 Beta</b></span>
-          <span>Платформа: <b>Windows</b></span>
-          <span>Оновлення: <b>через програму</b></span>
-        </div>
+<section class="hero">
+  <div class="hero-card">
+    <div>
+      <p class="eyebrow">Windows 10 / 11</p>
+      <h1>Завантажити <span>Beta</span></h1>
+      <p class="lead">Встановіть програму, зареєструйте майстерню, отримайте Workshop ID і протестуйте повний функціонал у пробний період.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">⬇ Завантажити v0.2.12 Beta</a>
+        <a class="btn blue" href="index.html#trial">Про Trial</a>
       </div>
-      <div class="hero-shot"><img src="program-screenshot.png" alt="Скріншот ONLINE Service Manager"></div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container cards three">
-      <article><span>1</span><h3>Завантажити</h3><p>Натисніть кнопку та збережіть EXE-файл.</p></article>
-      <article><span>2</span><h3>Запустити</h3><p>Якщо Windows покаже попередження, натисніть “Докладніше” → “Виконати”.</p></article>
-      <article><span>3</span><h3>Зареєструвати</h3><p>Введіть назву майстерні, телефон, адресу та email.</p></article>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="container footer-grid">
-    <div><b>ONLINE Service Manager</b><p>Створено майстром. Для майстрів.</p></div>
-    <div><b>Download</b><p>Windows Beta</p></div>
-    <div><b>Support</b><p>Через програму або сайт</p></div>
+    <div class="hero-shot"><img src="program-screenshot.png" alt="ONLINE Service Manager"></div>
   </div>
-</footer>
-<script src="script.js"></script>
-</body>
-</html>
+</section>
+<section class="section"><div class="section-card"><h2>Як встановити</h2><div class="grid">
+<div class="tile"><span>1</span><h3>Завантажити</h3><p>Натисніть кнопку та збережіть EXE-файл.</p></div>
+<div class="tile"><span>2</span><h3>Запустити</h3><p>Якщо Windows попередить — “Докладніше” → “Виконати”.</p></div>
+<div class="tile"><span>3</span><h3>Почати роботу</h3><p>Введіть дані майстерні й отримайте Workshop ID.</p></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="footer-card"><b>ONLINE Service Manager</b><span>Beta · ONLINE Cloud у розробці · Автоматичні оновлення</span></div></footer>
+</div></div>
+<script>
+function openStatus(event){
+  event.preventDefault();
+  const input=document.getElementById('repairCode');
+  const value=input?input.value.trim():'';
+  if(!value){alert('Введіть номер ремонту або QR-токен');return;}
+  const isRepair=value.toUpperCase().startsWith('R-');
+  const param=isRepair?'code':'token';
+  window.location.href='client.html?'+param+'='+encodeURIComponent(value);
+}
+(function(){
+  const p=new URLSearchParams(window.location.search);
+  const code=p.get('code'), token=p.get('token'), workshop=p.get('w');
+  const order=document.getElementById('orderNumber');
+  const tok=document.getElementById('tokenNumber');
+  const ws=document.getElementById('workshopId');
+  const st=document.getElementById('repairStatus');
+  const note=document.getElementById('clientNote');
+  if(token){
+    if(order)order.textContent='Захищений QR-токен';
+    if(tok)tok.textContent=token;
+    if(ws)ws.textContent=workshop||'ONLINE Cloud';
+    if(st)st.textContent='Очікує синхронізацію з ONLINE Cloud';
+    if(note)note.textContent='Після підключення ONLINE Cloud тут буде реальний статус ремонту.';
+    return;
+  }
+  if(code){if(order)order.textContent=code;if(st)st.textContent='Демо-режим';}
+})();
+</script>
+</body></html>
