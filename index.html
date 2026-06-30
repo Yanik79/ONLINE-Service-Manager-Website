@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ONLINE Service Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="logo">⚙</span><span><b>ONLINE</b><small>Service Manager</small></span></a>
+    <nav><a href="#features">Можливості</a><a href="#client">Кабінет клієнта</a><a href="#download">Завантажити</a></nav>
+    <a class="btn yellow" href="login.html">Кабінет користувача</a>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="tag">Програма для сервісних центрів</p>
+      <h1>ONLINE<br><span>Service Manager</span></h1>
+      <p class="lead">Облік ремонтів, клієнтів, запчастин, документів, QR-кодів, повідомлень та технічної бази.</p>
+      <div class="actions"><a class="btn yellow big" href="#download">⬇ Завантажити Beta</a><a class="btn outline big" href="#client">Перевірити ремонт</a></div>
+    </div>
+    <div class="mockup"><div class="window"><div class="window-top">ONLINE Dashboard</div><div class="dashboard"><aside>🏠 Головна<br>🛠 Ремонти<br>👥 Клієнти<br>📦 Склад<br>📐 Схеми<br>📄 Документи</aside><section><div class="cards"><div><small>Всього</small><b>124</b></div><div><small>В роботі</small><b>32</b></div><div><small>Готово</small><b>18</b></div></div><div class="chart"></div><div class="list">R-2026-000124 · iPhone 13<br>R-2026-000125 · Samsung A54<br>R-2026-000126 · MacBook A1466</div></section></div></div></div>
+  </div>
+</section>
+<section id="features" class="section"><div class="container"><h2>Можливості</h2><div class="features"><article>🛠<h3>Ремонти</h3><p>Прийом, статуси, оплата, гарантія.</p></article><article>👥<h3>Клієнти</h3><p>База клієнтів та історія звернень.</p></article><article>📐<h3>Технічна база</h3><p>Схеми, BoardView, мануали та нотатки.</p></article></div></div></section>
+<section id="client" class="section"><div class="container split"><div><h2>Кабінет клієнта</h2><p class="lead">Клієнт сканує QR-код або вводить номер ремонту та бачить статус.</p><form class="status-form" onsubmit="openStatus(event)"><label>Код ремонту</label><div><input id="repairCode" value="R-2026-000124"><button class="btn blue">Переглянути</button></div></form></div><div class="phone"><h3>Статус ремонту</h3><p>Samsung Galaxy A54</p><div class="pill">Очікує запчастину</div><ul><li class="done">Прийнято</li><li class="done">Діагностика</li><li class="active">Очікує запчастину</li><li>В роботі</li><li>Готово</li></ul></div></div></section>
+<section id="download" class="section"><div class="container download"><div><h2>ONLINE Service Manager Beta</h2><p>Тестова версія для майстрів та сервісних центрів.</p></div><a class="btn yellow big" href="#">Завантажити для Windows</a></div></section>
+</main>
+<footer class="footer"><div class="container footer-grid"><div><b>ONLINE Service Manager</b><p>Створено майстром. Для майстрів.</p></div><div><b>Підтримка</b><p>support@online-sm.com</p></div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
