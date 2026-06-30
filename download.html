@@ -112,7 +112,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.08;margin:0 0 14px;color:#0f2d52
       <h1>Завантажити <span>Beta</span></h1>
       <p class="lead">Встановіть програму, зареєструйте майстерню, отримайте Workshop ID і протестуйте повний функціонал у пробний період.</p>
       <div class="actions">
-        <a class="btn primary" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">⬇ Завантажити v0.2.12 Beta</a>
+        <a class="btn primary" data-download-link="true" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">⬇ Завантажити v0.2.12 Beta</a>
         <a class="btn blue" href="index.html#trial">Про Trial</a>
       </div>
     </div>
@@ -124,6 +124,18 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.08;margin:0 0 14px;color:#0f2d52
 <div class="tile"><span>2</span><h3>Запустити</h3><p>Якщо Windows попередить — “Докладніше” → “Виконати”.</p></div>
 <div class="tile"><span>3</span><h3>Почати роботу</h3><p>Введіть дані майстерні й отримайте Workshop ID.</p></div>
 </div></div></section>
+<section class="section">
+<div class="section-card" id="stats">
+  <p class="eyebrow">Статистика сайту</p>
+  <h2>Активність</h2>
+  <div class="stats">
+    <div class="stat blue"><small>Переглядів у цьому браузері</small><b id="siteViews">0</b></div>
+    <div class="stat green"><small>Кліків “Завантажити”</small><b id="downloadClicks">0</b></div>
+    <div class="stat orange"><small>Завантажень GitHub Release</small><b id="githubDownloads">—</b></div>
+    <div class="stat purple"><small>Trial</small><b>14 днів</b></div>
+  </div>
+</div>
+</section>
 </main>
 <footer class="footer"><div class="footer-card"><b>ONLINE Service Manager</b><span>Beta · ONLINE Cloud у розробці · Автоматичні оновлення</span></div></footer>
 </div></div>
@@ -155,5 +167,43 @@ function openStatus(event){
   }
   if(code){if(order)order.textContent=code;if(st)st.textContent='Демо-режим';}
 })();
+
+// ONLINE Service Manager site statistics v1
+(function(){
+  const VIEW_KEY = 'osm_site_local_views';
+  const DOWNLOAD_KEY = 'osm_site_local_download_clicks';
+
+  function num(v){ return Number(v || 0); }
+  function setText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.textContent = String(value);
+  }
+
+  const views = num(localStorage.getItem(VIEW_KEY)) + 1;
+  localStorage.setItem(VIEW_KEY, views);
+  setText('siteViews', views);
+
+  const downloads = num(localStorage.getItem(DOWNLOAD_KEY));
+  setText('downloadClicks', downloads);
+
+  document.querySelectorAll('[data-download-link="true"]').forEach(function(link){
+    link.addEventListener('click', function(){
+      const next = num(localStorage.getItem(DOWNLOAD_KEY)) + 1;
+      localStorage.setItem(DOWNLOAD_KEY, next);
+      setText('downloadClicks', next);
+    });
+  });
+
+  const api = 'https://api.github.com/repos/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/tags/v0.2.12';
+  fetch(api).then(r => r.ok ? r.json() : null).then(data => {
+    if(!data || !data.assets) return;
+    let total = 0;
+    data.assets.forEach(a => total += Number(a.download_count || 0));
+    setText('githubDownloads', total);
+  }).catch(() => {
+    setText('githubDownloads', '—');
+  });
+})();
+
 </script>
 </body></html>
