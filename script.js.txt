@@ -1,0 +1,36 @@
+function openStatus(event){
+  event.preventDefault();
+  const input=document.getElementById('repairCode');
+  const value=input?input.value.trim():'';
+  if(!value){alert('Введіть номер ремонту або QR-токен');return;}
+  const isRepair=value.toUpperCase().startsWith('R-');
+  const param=isRepair?'code':'token';
+  window.location.href='client.html?'+param+'='+encodeURIComponent(value);
+}
+
+(function(){
+  const p=new URLSearchParams(window.location.search);
+  const code=p.get('code');
+  const token=p.get('token');
+  const workshop=p.get('w');
+
+  const order=document.getElementById('orderNumber');
+  const tok=document.getElementById('tokenNumber');
+  const ws=document.getElementById('workshopId');
+  const st=document.getElementById('repairStatus');
+  const note=document.getElementById('clientNote');
+
+  if(token){
+    if(order)order.textContent='Захищений QR-токен';
+    if(tok)tok.textContent=token;
+    if(ws)ws.textContent=workshop||'ONLINE Cloud';
+    if(st)st.textContent='Очікує синхронізацію з ONLINE Cloud';
+    if(note)note.textContent='Після запуску ONLINE Cloud тут буде реальний статус ремонту.';
+    return;
+  }
+
+  if(code){
+    if(order)order.textContent=code;
+    if(st)st.textContent='Демо-режим';
+  }
+})();

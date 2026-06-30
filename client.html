@@ -1,1 +1,35 @@
-<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Статус ремонту — ONLINE Service Manager</title><link rel="stylesheet" href="style.css"></head><body class="center-page"><section class="client-card"><a class="brand" href="index.html"><span class="logo">⚙</span><span><b>ONLINE</b><small>Service Manager</small></span></a><div class="status-head"><div><p>Замовлення</p><h1 id="orderNumber">R-2026-000124</h1></div><span class="pill">Очікує запчастину</span></div><div class="device"><h2>Samsung Galaxy A54</h2><p>IMEI / SN: 385521841417171</p><p>Несправність: не заряджається</p></div><ul class="timeline"><li class="done"><b>Прийнято</b><span>Пристрій прийнято в сервіс</span></li><li class="done"><b>Діагностика</b><span>Майстер перевірив пристрій</span></li><li class="active"><b>Очікує запчастину</b><span>Замовлено необхідну деталь</span></li><li><b>В роботі</b><span>Ремонт буде виконано після надходження деталі</span></li><li><b>Готово</b><span>Клієнта буде повідомлено</span></li></ul><div class="prices"><div><span>Вартість</span><b>1500 грн</b></div><div><span>Передплата</span><b>500 грн</b></div><div><span>До сплати</span><b>1000 грн</b></div></div><div class="actions"><a class="btn blue" href="tel:+380677894595">Подзвонити</a><a class="btn outline" href="#">Telegram</a><a class="btn outline" href="#">Viber</a></div></section><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кабінет клієнта — ONLINE Service Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="brand-icon">⚙</span><span><b>ONLINE</b><small>Service Manager</small></span></a>
+    <nav class="nav-links"><a href="index.html">Головна</a><a href="download.html">Завантажити</a></nav>
+  </div>
+</header>
+<main class="section">
+  <div class="container client-card">
+    <p class="eyebrow">Кабінет клієнта</p>
+    <h1>Перевірка ремонту</h1>
+    <form onsubmit="openStatus(event)" class="status-form">
+      <input id="repairCode" placeholder="Введіть номер ремонту або QR-токен">
+      <button class="btn primary" type="submit">Перевірити</button>
+    </form>
+    <div class="status-box">
+      <p><b>Замовлення:</b> <span id="orderNumber">—</span></p>
+      <p><b>Token:</b> <span id="tokenNumber">—</span></p>
+      <p><b>Workshop:</b> <span id="workshopId">—</span></p>
+      <p><b>Статус:</b> <span id="repairStatus">Очікує дані</span></p>
+      <p id="clientNote">Після підключення ONLINE Cloud тут будуть реальні дані ремонту.</p>
+    </div>
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

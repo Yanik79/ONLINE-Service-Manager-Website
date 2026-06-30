@@ -4,37 +4,124 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ONLINE Service Manager — програма для сервісних центрів</title>
-  <meta name="description" content="ONLINE Service Manager — програма для обліку ремонтів, клієнтів, запчастин, документів і технічної бази сервісного центру.">
+  <meta name="description" content="ONLINE Service Manager — програма для обліку ремонтів, клієнтів, документів, QR, бази знань та онлайн-поновлень.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="header">
+<header class="topbar">
   <div class="container nav">
-    <a class="brand" href="index.html"><span class="logo">⚙</span><span><b>ONLINE</b><small>Service Manager</small></span></a>
-    <nav><a href="#features">Можливості</a><a href="#beta">Beta</a><a href="#client">Кабінет клієнта</a><a href="#feedback">Тестування</a></nav>
-    <a class="btn yellow" href="login.html">Кабінет користувача</a>
+    <a class="brand" href="index.html">
+      <span class="brand-icon">⚙</span>
+      <span><b>ONLINE</b><small>Service Manager</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Можливості</a>
+      <a href="#trial">Trial</a>
+      <a href="#pricing">Тарифи</a>
+      <a href="download.html">Завантажити</a>
+      <a class="nav-button" href="client.html">Кабінет клієнта</a>
+    </nav>
   </div>
 </header>
+
 <main>
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <p class="tag">Програма для сервісних центрів</p>
-      <h1>ONLINE<br><span>Service Manager</span></h1>
-      <p class="lead">Облік ремонтів, клієнтів, запчастин, документів, QR-кодів, повідомлень та технічної бази в одному робочому середовищі.</p>
-      <p class="slogan">Створено майстром. Для майстрів.</p>
-      <div class="actions"><a class="btn yellow big" href="#beta">⬇ Завантажити Beta</a><a class="btn outline big" href="client.html?code=R-2026-000124">Перевірити ремонт</a></div>
-      <div class="trust"><div><b>Швидко</b><span>оформлення ремонту за хвилину</span></div><div><b>Зручно</b><span>усе потрібне в одному місці</span></div><div><b>Практично</b><span>функції з реальної майстерні</span></div></div>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Публічна Beta · Windows 10 / 11</p>
+        <h1>ONLINE Service Manager</h1>
+        <h2>Програма для сервісних центрів та майстрів</h2>
+        <p class="lead">
+          Облік ремонтів, клієнтів, документів, QR-кодів, складу, фінансів,
+          бази знань, Workshop ID, ліцензій та онлайн-поновлень.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">⬇ Завантажити Beta</a>
+          <a class="btn secondary" href="#features">Переглянути можливості</a>
+        </div>
+        <div class="badges">
+          <span>✓ 28 днів повний Trial</span>
+          <span>✓ Онлайн-поновлення</span>
+          <span>✓ Workshop ID</span>
+          <span>✓ Basic / Pro / Cloud</span>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <img src="program-screenshot.png" alt="ONLINE Service Manager — робоче вікно програми">
+      </div>
     </div>
-    <div class="mockup"><div class="window"><div class="window-top">ONLINE Dashboard</div><div class="dashboard"><aside>🏠 Головна<br>🛠 Ремонти<br>👥 Клієнти<br>📦 Склад<br>📐 Схеми<br>📄 Документи</aside><section><div class="cards"><div><small>Всього</small><b>124</b></div><div><small>В роботі</small><b>32</b></div><div><small>Готово</small><b>18</b></div></div><div class="chart"><span>Ремонти за місяць</span></div><div class="list"><b>Останні ремонти</b><br>R-2026-000124 · iPhone 13<br>R-2026-000125 · Samsung A54<br>R-2026-000126 · MacBook A1466</div></section></div></div></div>
-  </div>
-</section>
-<section id="features" class="section"><div class="container"><h2>Можливості</h2><div class="features"><article>🛠<h3>Ремонти</h3><p>Прийом пристрою, статуси, вартість, передплата, гарантія та історія ремонту.</p></article><article>👥<h3>Клієнти</h3><p>База клієнтів, контакти, історія звернень, нотатки та витрати клієнта.</p></article><article>📐<h3>Технічна база</h3><p>Схеми, BoardView, сервісні мануали, прошивки, фото плат і типові несправності.</p></article><article>📄<h3>Документи</h3><p>Квитанція, гарантійний талон, договір сервісу, акт видачі та PDF.</p></article><article>📦<h3>Склад</h3><p>Запчастини, залишки, надходження, списання та контроль мінімальних залишків.</p></article><article>🔔<h3>Повідомлення</h3><p>Підготовка повідомлень клієнту через SMS, Viber та Telegram.</p></article></div></div></section>
-<section id="beta" class="section beta-section"><div class="container beta-box"><div><p class="tag">Beta-версія</p><h2>ONLINE Service Manager v0.3 Beta</h2><p class="lead">Перша тестова версія для майстрів та невеликих сервісних центрів. Програма активно розвивається і створюється з урахуванням реальної роботи майстерні.</p><div class="beta-list"><span>✓ Ремонти та клієнти</span><span>✓ Документи та QR-код</span><span>✓ Схеми та технічна база</span><span>✓ Локальна база даних</span></div></div><div class="download-card"><h3>Завантаження</h3><p>Файл EXE буде додано після збірки тестової версії.</p><a class="btn yellow big" href="#">Завантажити для Windows</a><small>Windows 10 / 11</small></div></div></section>
-<section id="client" class="section"><div class="container split"><div><h2>Кабінет клієнта</h2><p class="lead">Клієнт сканує QR-код з квитанції або вводить номер ремонту та бачить актуальний статус пристрою.</p><form class="status-form" onsubmit="openStatus(event)"><label>Код ремонту</label><div><input id="repairCode" value="R-2026-000124"><button class="btn blue">Переглянути</button></div></form></div><div class="phone"><h3>Статус ремонту</h3><p>Samsung Galaxy A54</p><div class="pill">Очікує запчастину</div><ul><li class="done">Прийнято</li><li class="done">Діагностика</li><li class="active">Очікує запчастину</li><li>В роботі</li><li>Готово</li></ul></div></div></section>
-<section id="feedback" class="section"><div class="container feedback"><div><h2>Запрошуємо майстрів до тестування</h2><p class="lead">Мета Beta-тесту — зробити програму максимально зручною для реальної майстерні, без зайвих функцій і складності.</p></div><div class="questions"><h3>Що важливо перевірити?</h3><ol><li>Чи зручно оформлювати ремонт?</li><li>Чи зрозумілий інтерфейс?</li><li>Яких функцій не вистачає?</li><li>Що заважає працювати швидше?</li><li>Чи користувалися б ви такою програмою щодня?</li></ol></div></div></section>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Можливості</p>
+        <h2>Все для роботи сервісного центру</h2>
+      </div>
+      <div class="cards">
+        <article><span>🛠</span><h3>Ремонти</h3><p>Прийом техніки, статуси, вартість, передплата, історія ремонту.</p></article>
+        <article><span>👥</span><h3>Клієнти</h3><p>База клієнтів, телефони, історія звернень та картка клієнта.</p></article>
+        <article><span>📄</span><h3>Документи</h3><p>Квитанції, гарантійні талони, договори сервісу та акти видачі.</p></article>
+        <article><span>📦</span><h3>Склад</h3><p>Запчастини, залишки, надходження, списання та рух товарів.</p></article>
+        <article><span>💳</span><h3>Фінанси</h3><p>Оплати, передплати, борги, витрати та підсумки по касі.</p></article>
+        <article><span>🧠</span><h3>База знань</h3><p>Пристрої, типові несправності, нотатки та технічні матеріали.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="trial" class="section alt">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Пробний період</p>
+        <h2>Спочатку повний функціонал, потім вибір тарифу</h2>
+        <p class="lead dark">
+          У пробний період майстер користується всіма можливостями програми.
+          Після завершення він обирає тільки той набір функцій, який реально потрібен.
+        </p>
+      </div>
+      <div class="notice">
+        <h3>Beta Pro ключ</h3>
+        <p>Для перших тестів:</p>
+        <code>OSM-BETA-TEST-2026</code>
+        <small>У фінальній версії активація буде через ONLINE Cloud.</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Тарифи</p>
+        <h2>Оновлення та функції відповідно до тарифу</h2>
+      </div>
+      <div class="pricing">
+        <article><h3>Basic</h3><p>Для невеликої майстерні.</p><ul><li>Ремонти</li><li>Клієнти</li><li>Документи</li><li>Базові QR</li></ul></article>
+        <article class="featured"><h3>Pro</h3><p>Для активного сервісного центру.</p><ul><li>Все з Basic</li><li>Склад</li><li>Фінанси</li><li>Звіти</li><li>База знань</li></ul></article>
+        <article><h3>Cloud</h3><p>Для онлайн-роботи.</p><ul><li>Все з Pro</li><li>Кабінет клієнта</li><li>Синхронізація</li><li>Захищені QR</li></ul></article>
+        <article><h3>Enterprise</h3><p>Для мережі майстерень.</p><ul><li>Все з Cloud</li><li>Кілька філій</li><li>Ролі доступу</li><li>API</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-box">
+      <div>
+        <h2>Готові спробувати?</h2>
+        <p>Завантажте ONLINE Service Manager і запустіть перший тест уже сьогодні.</p>
+      </div>
+      <a class="btn primary" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">⬇ Завантажити v0.2.12 Beta</a>
+    </div>
+  </section>
 </main>
-<footer class="footer"><div class="container footer-grid"><div><b>ONLINE Service Manager</b><p>Створено майстром. Для майстрів.</p></div><div><b>Сайт</b><p>GitHub Pages Beta</p></div><div><b>Контакт</b><p>support@online-sm.com</p></div></div></footer>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><b>ONLINE Service Manager</b><p>Створено майстром. Для майстрів.</p></div>
+    <div><b>Beta</b><p>Перший публічний реліз</p></div>
+    <div><b>ONLINE Cloud</b><p>У розробці</p></div>
+  </div>
+</footer>
+
 <script src="script.js"></script>
 </body>
 </html>

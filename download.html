@@ -7,156 +7,47 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="header">
+<header class="topbar">
   <div class="container nav">
-    <a class="brand" href="index.html">
-      <span class="logo">⚙</span>
-      <span><b>ONLINE</b><small>Service Manager</small></span>
-    </a>
-    <nav>
+    <a class="brand" href="index.html"><span class="brand-icon">⚙</span><span><b>ONLINE</b><small>Service Manager</small></span></a>
+    <nav class="nav-links">
       <a href="index.html">Головна</a>
+      <a href="index.html#features">Можливості</a>
       <a href="download.html">Завантажити</a>
-      <a href="client.html">Кабінет клієнта</a>
-      <a href="login.html">Кабінет користувача</a>
+      <a class="nav-button" href="client.html">Кабінет клієнта</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="hero download-hero">
+  <section class="hero download-page">
     <div class="container hero-grid">
-      <div class="hero-text">
-        <p class="tag">Публічна Beta · Windows 10 / 11</p>
-        <h1>ONLINE Service Manager</h1>
-        <h2>Програма для сервісних центрів та майстрів</h2>
+      <div class="hero-copy">
+        <p class="eyebrow">Windows 10 / 11 · Beta</p>
+        <h1>Завантажити ONLINE Service Manager</h1>
         <p class="lead">
-          Облік ремонтів, клієнтів, документів, QR-кодів, база знань,
-          реєстрація майстерні, онлайн-поновлення та підготовка до ONLINE Cloud.
+          Встановіть програму, зареєструйте майстерню, отримайте Workshop ID
+          і протестуйте повний функціонал у пробний період.
         </p>
-
-        <div class="hero-actions">
-          <a class="btn yellow big" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">
-            ⬇ Завантажити v0.2.12 Beta
-          </a>
-          <a class="btn ghost big" href="#trial">Пробний період</a>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe">⬇ Завантажити v0.2.12 Beta</a>
+          <a class="btn secondary" href="index.html#trial">Про Trial</a>
         </div>
-
-        <div class="quick-points">
-          <span>✓ Повний функціонал у Trial</span>
-          <span>✓ Автоматичні оновлення</span>
-          <span>✓ Workshop ID</span>
-          <span>✓ Ліцензії Basic / Pro / Cloud / Enterprise</span>
+        <div class="download-info">
+          <span>Версія: <b>0.2.12 Beta</b></span>
+          <span>Платформа: <b>Windows</b></span>
+          <span>Оновлення: <b>через програму</b></span>
         </div>
       </div>
-
-      <div class="hero-preview">
-        <img src="program-screenshot.png" alt="Скріншот ONLINE Service Manager">
-      </div>
-    </div>
-  </section>
-
-  <section id="trial" class="section">
-    <div class="container beta-box">
-      <div>
-        <p class="tag">Пробний період</p>
-        <h2>Спробуйте повний набір функцій</h2>
-        <p class="lead">
-          Під час пробного періоду доступні всі можливості програми.
-          Після завершення майстер обирає тільки той тариф, який йому потрібен.
-        </p>
-
-        <div class="beta-list">
-          <span>✓ Ремонти</span>
-          <span>✓ Клієнти</span>
-          <span>✓ Документи</span>
-          <span>✓ Склад</span>
-          <span>✓ Фінанси</span>
-          <span>✓ База знань</span>
-          <span>✓ QR</span>
-          <span>✓ ONLINE Cloud — підготовлено</span>
-        </div>
-      </div>
-
-      <div class="download-card">
-        <h3>Beta Pro ключ</h3>
-        <p>Для перших тестів можна активувати Pro-функції:</p>
-        <code>OSM-BETA-TEST-2026</code>
-        <small>У фінальній версії активація буде проходити через ONLINE Cloud.</small>
-      </div>
+      <div class="hero-shot"><img src="program-screenshot.png" alt="Скріншот ONLINE Service Manager"></div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2>Тарифи після пробного періоду</h2>
-      <div class="pricing-grid">
-        <article class="price-card">
-          <h3>Basic</h3>
-          <p>Для невеликої майстерні.</p>
-          <ul>
-            <li>Ремонти</li>
-            <li>Клієнти</li>
-            <li>Документи</li>
-            <li>Базові QR</li>
-          </ul>
-        </article>
-
-        <article class="price-card popular">
-          <h3>Pro</h3>
-          <p>Для активного сервісного центру.</p>
-          <ul>
-            <li>Все з Basic</li>
-            <li>Склад</li>
-            <li>Фінанси</li>
-            <li>Звіти</li>
-            <li>База знань</li>
-          </ul>
-        </article>
-
-        <article class="price-card">
-          <h3>Cloud</h3>
-          <p>Для онлайн-роботи з клієнтами.</p>
-          <ul>
-            <li>Все з Pro</li>
-            <li>Кабінет клієнта</li>
-            <li>Синхронізація</li>
-            <li>Захищені QR</li>
-          </ul>
-        </article>
-
-        <article class="price-card">
-          <h3>Enterprise</h3>
-          <p>Для мережі майстерень.</p>
-          <ul>
-            <li>Все з Cloud</li>
-            <li>Кілька філій</li>
-            <li>Ролі доступу</li>
-            <li>API</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container beta-box">
-      <div>
-        <h2>Як встановити</h2>
-        <ol class="steps">
-          <li>Натисніть “Завантажити”.</li>
-          <li>Запустіть EXE-файл.</li>
-          <li>При першому запуску введіть дані майстерні.</li>
-          <li>Отримайте Workshop ID та починайте роботу.</li>
-        </ol>
-      </div>
-
-      <div class="download-card">
-        <h3>Онлайн-поновлення</h3>
-        <p>
-          Програма перевіряє нові версії через сайт і завантажує тільки
-          оновлення відповідного тарифу.
-        </p>
-      </div>
+    <div class="container cards three">
+      <article><span>1</span><h3>Завантажити</h3><p>Натисніть кнопку та збережіть EXE-файл.</p></article>
+      <article><span>2</span><h3>Запустити</h3><p>Якщо Windows покаже попередження, натисніть “Докладніше” → “Виконати”.</p></article>
+      <article><span>3</span><h3>Зареєструвати</h3><p>Введіть назву майстерні, телефон, адресу та email.</p></article>
     </div>
   </section>
 </main>
@@ -164,9 +55,10 @@
 <footer class="footer">
   <div class="container footer-grid">
     <div><b>ONLINE Service Manager</b><p>Створено майстром. Для майстрів.</p></div>
-    <div><b>Beta</b><p>Перший публічний реліз</p></div>
-    <div><b>ONLINE Cloud</b><p>У розробці</p></div>
+    <div><b>Download</b><p>Windows Beta</p></div>
+    <div><b>Support</b><p>Через програму або сайт</p></div>
   </div>
 </footer>
+<script src="script.js"></script>
 </body>
 </html>
