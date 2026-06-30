@@ -2,77 +2,23 @@
   "app": "ONLINE Service Manager",
   "channel": "beta",
   "latest_version": "0.2.12",
-  "published_at": "2026-06-30",
+  "tag": "v0.2.12",
+  "release_title": "ONLINE Service Manager v0.2.12 Beta",
+  "published_at": "2026-07-01",
+  "download_url": "https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe",
+  "file_name": "ONLINE-Service-Manager-v0.2.12.exe",
+  "sha256": "d0f052370732475aab043ddef3b0a79c18bd16b055d9665f43a635abd0c5a64b",
+  "size_bytes": 56232364,
+  "release_notes": [
+    "Додано ONLINE Cloud / Реєстрація майстерні",
+    "Додано Workshop ID, Install ID та Cloud Token",
+    "Додано реєстрацію купленої програми",
+    "Додано онлайн-перевірку оновлень",
+    "Покращено головну сторінку",
+    "Додано базу знань та технічні матеріали",
+    "Підготовлено основу для захищених QR-кодів",
+    "Покращено стабільність Beta-версії"
+  ],
   "min_supported_version": "0.2.0",
-  "force_update": false,
-  "updates": {
-    "BASIC": {
-      "version": "0.2.12",
-      "tag": "v0.2.12",
-      "title": "ONLINE Service Manager Basic v0.2.12 Beta",
-      "file_name": "ONLINE-Service-Manager-v0.2.12.exe",
-      "download_url": "https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe",
-      "sha256": "",
-      "size_bytes": 0,
-      "release_notes": [
-        "Ремонти та клієнти",
-        "Документи",
-        "Базові QR",
-        "База знань",
-        "Реєстрація майстерні",
-        "Онлайн-поновлення Basic"
-      ]
-    },
-    "PRO": {
-      "version": "0.2.12",
-      "tag": "v0.2.12",
-      "title": "ONLINE Service Manager Pro v0.2.12 Beta",
-      "file_name": "ONLINE-Service-Manager-v0.2.12.exe",
-      "download_url": "https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe",
-      "sha256": "",
-      "size_bytes": 0,
-      "release_notes": [
-        "Все з Basic",
-        "Склад",
-        "Фінанси",
-        "Розширені звіти",
-        "Резервні копії",
-        "Технічна база",
-        "Онлайн-поновлення Pro"
-      ]
-    },
-    "CLOUD": {
-      "version": "0.2.12",
-      "tag": "v0.2.12",
-      "title": "ONLINE Service Manager Cloud v0.2.12 Beta",
-      "file_name": "ONLINE-Service-Manager-v0.2.12.exe",
-      "download_url": "https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe",
-      "sha256": "",
-      "size_bytes": 0,
-      "release_notes": [
-        "Все з Pro",
-        "ONLINE Cloud",
-        "Кабінет клієнта",
-        "Синхронізація",
-        "Захищені QR",
-        "Онлайн-статуси"
-      ]
-    },
-    "ENTERPRISE": {
-      "version": "0.2.12",
-      "tag": "v0.2.12",
-      "title": "ONLINE Service Manager Enterprise v0.2.12 Beta",
-      "file_name": "ONLINE-Service-Manager-v0.2.12.exe",
-      "download_url": "https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.12/ONLINE-Service-Manager-v0.2.12.exe",
-      "sha256": "",
-      "size_bytes": 0,
-      "release_notes": [
-        "Все з Cloud",
-        "Кілька майстерень",
-        "Ролі доступу",
-        "API",
-        "Enterprise-налаштування"
-      ]
-    }
-  }
+  "force_update": false
 }
