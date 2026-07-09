@@ -1,0 +1,18 @@
+{
+  "latest": "0.2.26",
+  "version": "0.2.26",
+  "channel": "stable",
+  "published": "2026-07-09T11:06:29",
+  "file": "ONLINE-Service-Manager.zip",
+  "filename": "ONLINE-Service-Manager.zip",
+  "url": "ONLINE-Service-Manager.zip",
+  "sha256": "4299fe5a27a75bbca64c39e74db3782e64c7a7614ef4580e55a6ecf396acb10e",
+  "size": 56078491,
+  "notes": [
+    "Перший публічний Beta-реліз",
+    "Developer Suite v1.1",
+    "Website Publisher",
+    "Public Release Gate"
+  ],
+  "developer_files": 0
+}
