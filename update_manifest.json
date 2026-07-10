@@ -1,19 +1,20 @@
 {
   "app": "ONLINE Service Manager",
-  "channel": "beta",
-  "latest_version": "0.2.13",
-  "tag": "v0.2.13",
-  "release_title": "ONLINE Service Manager v0.2.13 Beta",
-  "published_at": "2026-07-01",
-  "download_url": "https://github.com/Yanik79/ONLINE-Service-Manager-v0.1.1/releases/download/v0.2.13/ONLINE-Service-Manager-v0.2.13.exe",
-  "file_name": "ONLINE-Service-Manager-v0.2.13.exe",
-  "sha256": "",
-  "size_bytes": 0,
+  "channel": "stable",
+  "latest_version": "0.2.29",
+  "tag": "v0.2.29",
+  "release_title": "ONLINE Service Manager v0.2.29 Beta",
+  "published_at": "2026-07-10T16:00:40",
+  "download_url": "update/latest/ONLINE-Service-Manager-v0.2.29.zip",
+  "file_name": "ONLINE-Service-Manager-v0.2.29.zip",
+  "stable_download_url": "update/latest/ONLINE-Service-Manager.zip",
+  "sha256": "562c0e1177779f6e7c4e550536e099f1787117aac7751a616b6c16f161e79e0e",
+  "size_bytes": 56103899,
   "release_notes": [
-    "Пробний період змінено на 14 днів",
-    "Оновлено сайт у стилі програми",
-    "Покращено механізм онлайн-оновлення",
-    "Покращено стабільність Beta-версії"
+    "Перший публічний Beta-реліз",
+    "Developer Suite v1.1",
+    "Website Publisher",
+    "Public Release Gate"
   ],
   "min_supported_version": "0.2.0",
   "force_update": false
