@@ -1,12 +1,12 @@
 {
-  "latest": "0.2.26",
-  "version": "0.2.26",
+  "latest": "0.2.27",
+  "version": "0.2.27",
   "channel": "stable",
-  "published": "2026-07-09T11:06:29",
+  "published": "2026-07-10T11:29:18",
   "file": "ONLINE-Service-Manager.zip",
   "filename": "ONLINE-Service-Manager.zip",
   "url": "ONLINE-Service-Manager.zip",
-  "sha256": "4299fe5a27a75bbca64c39e74db3782e64c7a7614ef4580e55a6ecf396acb10e",
+  "sha256": "09393c96870a1a9abeba428b696595f959e9560964347e8fe387dab5aaf48612",
   "size": 56078491,
   "notes": [
     "Перший публічний Beta-реліз",

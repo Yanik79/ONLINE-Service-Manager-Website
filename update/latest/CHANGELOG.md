@@ -1,6 +1,6 @@
-# ONLINE Service Manager 0.2.26
+# ONLINE Service Manager 0.2.27
 
-Published: 2026-07-09T11:06:29
+Published: 2026-07-10T11:29:18
 Channel: stable
 
 ## Changes
