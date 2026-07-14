@@ -1,7 +1,7 @@
-# ONLINE Service Manager 0.2.40
+# ONLINE Service Manager 0.2.41
 
-Published: 2026-07-14T12:42:33
-Channel: beta
+Published: 2026-07-14T13:39:03
+Channel: stable
 
 ## Changes
 - Перший публічний Beta-реліз
