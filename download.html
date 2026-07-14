@@ -100,7 +100,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.08;margin:0 0 14px;color:#0f2d52
 </aside>
 <div class="main">
 <header class="top-strip">
-  <div class="top-brand"><img src="online-logo.svg" alt="ONLINE"><span class="pill">v0.2.43 Beta</span></div>
+  <div class="top-brand"><img src="online-logo.svg" alt="ONLINE"><span class="pill">v0.2.44 Beta</span></div>
   <div class="top-meta"><span>Windows 10 / 11</span><span>Trial 14 днів</span></div>
 </header>
 
@@ -112,7 +112,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.08;margin:0 0 14px;color:#0f2d52
       <h1>Завантажити <span>Beta</span></h1>
       <p class="lead">Встановіть програму, зареєструйте майстерню, отримайте Workshop ID і протестуйте повний функціонал у пробний період.</p>
       <div class="actions">
-        <a class="btn primary" data-download-link="true" href="update/latest/ONLINE-Service-Manager-v0.2.43.zip">⬇ Завантажити v0.2.43 Beta</a>
+        <a class="btn primary" data-download-link="true" href="update/latest/ONLINE-Service-Manager-v0.2.44.zip">⬇ Завантажити v0.2.44 Beta</a>
         <a class="btn blue" href="index.html#trial">Про Trial</a>
       </div>
     </div>
@@ -194,7 +194,7 @@ function openStatus(event){
     });
   });
 
-  const api = 'https://api.github.com/repos/Yanik79/ONLINE-Service-Manager-v0.2.43/releases/tags/v0.2.43';
+  const api = 'https://api.github.com/repos/Yanik79/ONLINE-Service-Manager-v0.2.44/releases/tags/v0.2.44';
   fetch(api).then(r => r.ok ? r.json() : null).then(data => {
     if(!data || !data.assets) return;
     let total = 0;
