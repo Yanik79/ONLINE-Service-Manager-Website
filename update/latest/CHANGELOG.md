@@ -1,10 +1,10 @@
-# ONLINE Service Manager 1.0.1
+# ONLINE Service Manager 1.0.2
 
-Published: 2026-07-20T20:14:38
+Published: 2026-07-20T22:56:51
 Channel: stable
 
 ## Changes
-- Синхронізовано версію програми та системи оновлень
-- Оновлено сайт, тарифи й оформлення замовлення
-- Додано юридичні сторінки та умови оплати і повернення
-- Виправлено процес публікації сайту на GitHub Pages
+- Перший публічний Beta-реліз
+- Developer Suite v1.1
+- Website Publisher
+- Public Release Gate
