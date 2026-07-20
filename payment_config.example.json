@@ -1,0 +1,12 @@
+{
+  "provider": "liqpay",
+  "enabled": false,
+  "currency": [
+    "UAH",
+    "USD"
+  ],
+  "server_create_payment_endpoint": "/api/payments/liqpay/create",
+  "server_callback_endpoint": "/api/payments/liqpay/callback",
+  "server_result_endpoint": "/payment-result.html",
+  "note": "Public/private keys must stay only on the server or in Admin Console DPAPI storage."
+}

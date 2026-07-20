@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Оформлення замовлення на ліцензію ONLINE Service Manager.">
+  <meta name="theme-color" content="#0759ad">
+  <title>Оформлення замовлення — OnLine ProjectLab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти до змісту</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="OnLine ProjectLab — головна">
+        <span class="brand-mark"><img src="online-logo.svg" alt="ONLINE Service Manager"></span>
+        <span class="brand-copy"><strong>OnLine ProjectLab</strong><small>ONLINE Service Manager</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Меню</button>
+      <nav id="main-menu" class="main-menu" aria-label="Головна навігація">
+        <a href="index.html#features">Можливості</a><a href="pricing.html">Тарифи</a><a href="payment-delivery.html">Оплата і доставка</a><a href="refund.html">Повернення</a><a href="seller.html">Про продавця</a><a href="contacts.html">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-hero page-hero-small">
+      <div class="container page-hero-inner">
+        <div><p class="eyebrow eyebrow-light">Оформлення замовлення</p><h1>Підготуйте покупку ліцензії</h1></div>
+        <p>Заповніть контактні дані, оберіть тариф і перевірте підсумок. Оплата здійснюватиметься у гривнях через захищену сторінку LiqPay.</p>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container order-layout">
+        <form id="checkoutForm" class="order-form" novalidate>
+          <div class="form-heading"><p class="eyebrow">Дані покупця</p><h2>Оформлення</h2></div>
+          <div class="form-grid-new">
+            <label class="field"><span>ПІБ або назва компанії</span><input name="full_name" type="text" autocomplete="name" required></label>
+            <label class="field"><span>Email для акаунта й квитанції</span><input name="email" type="email" autocomplete="email" required></label>
+            <label class="field"><span>Контактний телефон</span><input name="phone" type="tel" autocomplete="tel" required></label>
+            <label class="field"><span>Назва майстерні <small>(необов’язково)</small></span><input name="workshop" type="text" autocomplete="organization"></label>
+            <label class="field"><span>Тариф</span><select id="plan" name="plan" required><option value="Basic">Basic</option><option value="Pro">Pro</option><option value="Cloud">Cloud</option><option value="Enterprise">Enterprise</option></select></label>
+            <label class="field"><span>Строк ліцензії</span><select id="term" name="term" required><option value="6">6 місяців</option><option value="12">12 місяців</option></select></label>
+            <label class="field field-wide"><span>Коментар <small>(необов’язково)</small></span><textarea name="comment" rows="4"></textarea></label>
+          </div>
+          <label class="consent"><input name="consent" type="checkbox" required><span>Я погоджуюся з <a href="offer.html">публічною офертою</a>, <a href="privacy.html">політикою конфіденційності</a> та <a href="refund.html">умовами повернення</a>.</span></label>
+          <div class="form-actions"><button class="button button-accent" type="submit">Сформувати замовлення</button><a id="emailOrder" class="button button-secondary is-hidden" href="mailto:onlineprojectlab@ukr.net">Надіслати замовлення</a></div>
+          <div id="orderResult" class="order-result" role="status" aria-live="polite"></div>
+        </form>
+
+        <aside class="order-summary" aria-label="Підсумок замовлення">
+          <p class="eyebrow">Ваше замовлення</p>
+          <h2 id="summaryPlan">Pro</h2>
+          <div class="summary-row"><span>Строк</span><strong id="summaryTerm">6 місяців</strong></div>
+          <div class="summary-row"><span>Довідково</span><strong id="summaryUsd">20 USD</strong></div>
+          <div class="summary-total"><span>До оплати</span><strong id="summaryPrice">900 грн</strong></div>
+          <p class="summary-note">Для Enterprise показана мінімальна ціна. Остаточна пропозиція залежить від кількості робочих місць і потрібних функцій.</p>
+          <button class="button button-disabled button-full" type="button" disabled>Оплата LiqPay — після активації</button>
+          <p class="security-note">Платіжні реквізити й секретні ключі не зберігаються на цьому сайті.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer compact-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><img src="online-logo.svg" alt="ONLINE Service Manager"><strong>OnLine ProjectLab</strong><span>ONLINE Service Manager</span></div>
+      <div><h2>Покупцю</h2><a href="pricing.html">Тарифи та ціни</a><a href="payment-delivery.html">Оплата і доставка</a><a href="refund.html">Повернення</a></div>
+      <div><h2>Підтримка</h2><a href="tel:+380965362536">096&nbsp;536&nbsp;25&nbsp;36</a><a href="mailto:onlineprojectlab@ukr.net">onlineprojectlab@ukr.net</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 OnLine ProjectLab</span><span>ФОП Янковський Руслан Валентійович · РНОКПП 2904820498</span></div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

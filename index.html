@@ -1,251 +1,244 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ONLINE Service Manager — програма для сервісних центрів</title>
-<style>
-:root{
-  --blue:#1565C0;--blue2:#1E88E5;--side:#064f9e;--side2:#003b78;
-  --bg:#f3f6fa;--card:#ffffff;--text:#0f172a;--muted:#64748b;
-  --line:#d6e4f5;--yellow:#ffc400;--green:#2fab39;--red:#e53e3e;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
-a{text-decoration:none;color:inherit}
-.shell{min-height:100vh;display:grid;grid-template-columns:260px 1fr}
-.sidebar{
-  position:sticky;top:0;height:100vh;padding:18px 14px;background:linear-gradient(180deg,var(--side),var(--side2));
-  color:#eaf2ff;border-right:1px solid rgba(255,255,255,.15)
-}
-.side-logo{display:flex;align-items:center;gap:10px;padding:10px 12px 18px}
-.side-logo img{width:180px;max-width:100%}
-.side-menu{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-.side-menu a{
-  min-height:54px;display:flex;align-items:center;gap:12px;padding:0 16px;border-radius:13px;
-  color:#eaf2ff;font-size:16px;font-weight:600;border:1px solid transparent
-}
-.side-menu a:hover,.side-menu a.active{background:#1976d2;border-color:rgba(255,255,255,.22);color:#fff}
-.side-bottom{position:absolute;bottom:18px;left:14px;right:14px;color:#bcd7ff;font-size:13px;line-height:1.45}
-.main{min-width:0}
-.top-strip{
-  margin:16px 16px 0;padding:18px 22px;border-radius:16px;background:linear-gradient(90deg,#1565c0,#1e88e5);
-  color:#fff;display:flex;align-items:center;justify-content:space-between;gap:18px
-}
-.top-brand{display:flex;align-items:center;gap:18px}
-.top-brand img{height:58px}
-.top-meta{display:flex;gap:18px;align-items:center;font-size:14px;color:#eaf2ff}
-.pill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:9px 13px;border-radius:12px;font-weight:800}
-.hero{padding:28px 16px 20px}
-.hero-card{
-  background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 12px 35px rgba(22,77,135,.08);
-  display:grid;grid-template-columns:minmax(0,.9fr) minmax(480px,1.25fr);gap:30px;align-items:center
-}
-.eyebrow{color:#1565c0;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:.08em;margin:0 0 10px}
-h1{font-size:clamp(42px,5vw,72px);line-height:.95;margin:0;color:#0f172a;letter-spacing:-.04em}
-h1 span{color:#1565c0}
-h2{font-size:clamp(28px,3vw,44px);line-height:1.08;margin:0 0 14px;color:#0f2d52}
-.lead{font-size:18px;line-height:1.65;color:#475569;max-width:720px}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
-.btn{min-height:48px;border-radius:12px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;border:1px solid var(--line)}
-.btn.primary{background:var(--yellow);border-color:var(--yellow);color:#111}
-.btn.blue{background:#1976d2;border-color:#1976d2;color:#fff}
-.btn.light{background:#fff;color:#0f172a}
-.hero-shot{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:0 16px 46px rgba(22,77,135,.16)}
-.hero-shot img{width:100%;display:block;border-radius:12px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
-.stat{border-radius:14px;color:#fff;padding:16px;min-height:92px;display:flex;flex-direction:column;justify-content:center}
-.stat b{font-size:30px}.stat small{font-weight:800}
-.stat.blue{background:#1976d2}.stat.orange{background:#f57c00}.stat.green{background:#2fab39}.stat.purple{background:#7e57c2}
-.section{padding:28px 16px}
-.section-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 12px 35px rgba(22,77,135,.07)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;min-height:150px}
-.tile span{font-size:30px}.tile h3{margin:10px 0 8px;font-size:22px;color:#0b4ea2}.tile p{margin:0;color:#475569;line-height:1.55}
-.split{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
-.notice{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:24px}
-.notice code{display:block;background:#071421;color:#ffc400;border-radius:12px;padding:15px;margin-top:12px;font-weight:900}
-.pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.price{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
-.price.featured{border-color:#ffc400;box-shadow:0 15px 38px rgba(255,196,0,.18)}
-.price h3{font-size:26px;margin:0 0 8px;color:#0b4ea2}.price ul{padding-left:20px;color:#334155;line-height:1.9}
-.client-box{max-width:780px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px}
-.form{display:flex;gap:12px;margin:22px 0}.form input{flex:1;min-height:52px;border:1px solid var(--line);border-radius:13px;padding:0 16px;font-size:16px}
-.status{background:#f8fbff;border:1px solid var(--line);border-radius:14px;padding:18px}
-.footer{padding:28px 16px;color:#64748b}.footer-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;justify-content:space-between;gap:20px}
-@media(max-width:1100px){
-  .shell{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.side-bottom{position:static;margin-top:18px}
-  .side-menu{display:grid;grid-template-columns:repeat(2,1fr)}
-  .hero-card,.split{grid-template-columns:1fr}.pricing,.grid,.stats{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:680px){
-  .side-menu,.pricing,.grid,.stats{grid-template-columns:1fr}.top-strip,.footer-card,.form{flex-direction:column;align-items:flex-start}.hero-card{padding:18px}.top-brand img{height:48px}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ONLINE Service Manager — програма для керування ремонтами, клієнтами, складом, фінансами та документами сервісного центру.">
+  <meta name="theme-color" content="#0759ad">
+  <title>OnLine ProjectLab — ONLINE Service Manager</title>
+  <link rel="canonical" href="https://yanik79.github.io/ONLINE-Service-Manager-Website/">
+  <link rel="stylesheet" href="style.css">
+  <meta name="application-version" content="0.2.55">
 </head>
 <body>
-<div class="shell">
-<aside class="sidebar">
-  <div class="side-logo"><img src="online-logo.svg" alt="ONLINE Service Manager"></div>
-  <nav class="side-menu">
-    <a class="active" href="index.html">⌂ Головна</a>
-    <a href="index.html#features">⚒ Можливості</a>
-    <a href="index.html#trial">🔐 Trial</a>
-    <a href="index.html#pricing">💳 Тарифи</a>
-    <a class="" href="download.html">⬇ Завантажити</a>
-    <a class="" href="client.html">◇ Кабінет клієнта</a>
-  </nav>
-  <div class="side-bottom">ONLINE Service Manager<br>Створено майстром. Для майстрів.</div>
-</aside>
-<div class="main">
-<header class="top-strip">
-  <div class="top-brand"><img src="online-logo.svg" alt="ONLINE"><span class="pill">v0.2.56 Beta</span></div>
-  <div class="top-meta"><span>Windows 10 / 11</span><span>Trial 14 днів</span></div>
-</header>
+  <a class="skip-link" href="#content">Перейти до змісту</a>
 
-<main>
-<section class="hero">
-  <div class="hero-card">
-    <div>
-      <p class="eyebrow">Публічна Beta · повний Trial</p>
-      <h1>ONLINE <span>Service Manager</span></h1>
-      <p class="lead">Програма для сервісних центрів: ремонти, клієнти, документи, QR-коди, склад, фінанси, база знань, Workshop ID, ліцензії та онлайн-поновлення.</p>
-      <div class="actions">
-        <a class="btn primary" data-download-link="true" href="update/latest/ONLINE-Service-Manager-v0.2.56.zip">⬇ Завантажити Beta</a>
-        <a class="btn blue" href="#features">Переглянути можливості</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="OnLine ProjectLab — головна">
+        <span class="brand-mark"><img src="online-logo.svg" alt="ONLINE Service Manager"></span>
+        <span class="brand-copy"><strong>OnLine ProjectLab</strong><small>ONLINE Service Manager</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Меню</button>
+      <nav id="main-menu" class="main-menu" aria-label="Головна навігація">
+        <a href="#features">Можливості</a>
+        <a href="#pricing">Тарифи</a>
+        <a href="#payment">Оплата і доставка</a>
+        <a href="#returns">Повернення</a>
+        <a href="#seller">Про продавця</a>
+        <a href="#contacts">Контакти</a>
+      </nav>
+      <a class="button button-small button-accent header-cta" href="#pricing">Обрати тариф</a>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Програма для сервісних центрів</p>
+          <h1>Уся робота майстерні — в одній системі</h1>
+          <p class="hero-lead">ONLINE Service Manager допомагає вести ремонти, клієнтів, документи, склад і фінанси без зайвих таблиць та паперової плутанини.</p>
+          <div class="hero-actions">
+            <a class="button button-accent" data-download-link href="update/latest/ONLINE-Service-Manager-v0.2.55.zip">Завантажити для Windows</a>
+            <a class="button button-secondary" href="#pricing">Переглянути тарифи</a>
+          </div>
+          <ul class="trust-list">
+            <li>14 днів пробного періоду</li>
+            <li>Windows 10 та 11</li>
+            <li>Підтримка українською</li>
+          </ul>
+        </div>
+        <div class="product-preview">
+          <div class="preview-topline">
+            <span class="status-dot"></span>
+            <span>ONLINE Service Manager</span>
+            <span class="preview-label">Актуальний реліз</span>
+          </div>
+          <img src="program-screenshot.png" alt="Головне вікно ONLINE Service Manager з переліком ремонтів">
+        </div>
       </div>
-      <div class="stats">
-        <div class="stat blue"><small>Ремонтів</small><b>30</b></div>
-        <div class="stat orange"><small>Діагностика</small><b>6</b></div>
-        <div class="stat purple"><small>Очікує</small><b>5</b></div>
-        <div class="stat green"><small>Готово</small><b>5</b></div>
+    </section>
+
+    <section class="proof-strip" aria-label="Переваги">
+      <div class="container proof-grid">
+        <div><strong>Швидкий старт</strong><span>Майстер налаштовує профіль і відразу починає роботу</span></div>
+        <div><strong>Захист даних</strong><span>Резервні копії та контроль доступу до робочої бази</span></div>
+        <div><strong>Готові документи</strong><span>Квитанції, договори, гарантійні талони й акти</span></div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Можливості</p>
+          <h2>Створено майстром для майстрів</h2>
+          <p>Практичні інструменти для щоденної роботи сервісного центру — від приймання пристрою до видачі клієнту.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><span class="feature-icon">01</span><h3>Ремонти</h3><p>Приймання техніки, статуси, несправності, виконані роботи, суми та історія замовлення.</p></article>
+          <article class="feature-card"><span class="feature-icon">02</span><h3>Клієнти</h3><p>Єдина база контактів, пристроїв і звернень із швидким пошуком потрібної інформації.</p></article>
+          <article class="feature-card"><span class="feature-icon">03</span><h3>Документи</h3><p>Квитанції, гарантійні талони, договори сервісу, акти видачі, QR-коди та штрихкоди.</p></article>
+          <article class="feature-card"><span class="feature-icon">04</span><h3>Склад</h3><p>Запчастини, залишки, надходження, списання та контроль руху товарів.</p></article>
+          <article class="feature-card"><span class="feature-icon">05</span><h3>Фінанси</h3><p>Оплати, передплати, борги, витрати, денна каса та зрозумілі звіти.</p></article>
+          <article class="feature-card"><span class="feature-icon">06</span><h3>База знань</h3><p>Моделі пристроїв, типові несправності, технічні нотатки й матеріали майстерні.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section section-soft">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Тарифи та ціни</p>
+          <h2>Оберіть потрібний рівень можливостей</h2>
+          <p>Ціни зафіксовані у гривнях для оплати в Україні. Доларовий еквівалент наведено для інформації за розрахунковим курсом 45 грн/USD.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-head"><h3>Basic</h3><span>Невелика майстерня</span></div>
+            <div class="term"><span>6 місяців</span><strong>450 грн</strong><small>10 USD</small></div>
+            <div class="term"><span>12 місяців</span><strong>675 грн</strong><small>15 USD</small></div>
+            <ul><li>Ремонти та клієнти</li><li>Основні документи</li><li>Базові QR-коди</li></ul>
+            <a class="button button-secondary button-full" data-plan="Basic" href="mailto:onlineprojectlab@ukr.net?subject=ONLINE%20Service%20Manager%20-%20Basic">Замовити Basic</a>
+          </article>
+
+          <article class="price-card featured">
+            <div class="popular">Популярний</div>
+            <div class="price-head"><h3>Pro</h3><span>Активний сервісний центр</span></div>
+            <div class="term"><span>6 місяців</span><strong>900 грн</strong><small>20 USD</small></div>
+            <div class="term"><span>12 місяців</span><strong>1 350 грн</strong><small>30 USD</small></div>
+            <ul><li>Усе з тарифу Basic</li><li>Склад і фінанси</li><li>Звіти та база знань</li></ul>
+            <a class="button button-accent button-full" data-plan="Pro" href="mailto:onlineprojectlab@ukr.net?subject=ONLINE%20Service%20Manager%20-%20Pro">Замовити Pro</a>
+          </article>
+
+          <article class="price-card">
+            <div class="price-head"><h3>Cloud</h3><span>Онлайн-можливості</span></div>
+            <div class="term"><span>6 місяців</span><strong>1 800 грн</strong><small>40 USD</small></div>
+            <div class="term"><span>12 місяців</span><strong>2 700 грн</strong><small>60 USD</small></div>
+            <ul><li>Усе з тарифу Pro</li><li>Хмарна синхронізація</li><li>Кабінет клієнта</li></ul>
+            <a class="button button-secondary button-full" data-plan="Cloud" href="mailto:onlineprojectlab@ukr.net?subject=ONLINE%20Service%20Manager%20-%20Cloud">Замовити Cloud</a>
+          </article>
+
+          <article class="price-card">
+            <div class="price-head"><h3>Enterprise</h3><span>Мережа майстерень</span></div>
+            <div class="term enterprise-term"><span>від 12 місяців</span><strong>від 4 500 грн</strong><small>від 100 USD</small></div>
+            <ul><li>Усе з тарифу Cloud</li><li>Кілька філій і ролі</li><li>Індивідуальне впровадження</li></ul>
+            <a class="button button-secondary button-full" data-plan="Enterprise" href="mailto:onlineprojectlab@ukr.net?subject=ONLINE%20Service%20Manager%20-%20Enterprise">Отримати пропозицію</a>
+          </article>
+        </div>
+        <p class="pricing-note">Остаточна сума замовлення відображається до оплати. Для Enterprise вартість погоджується індивідуально залежно від кількості робочих місць і необхідних функцій.</p>
+      </div>
+    </section>
+
+    <section id="payment" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Оплата та електронна доставка</p>
+          <h2>Прозорий процес покупки</h2>
+          <p class="section-lead">Предметом продажу є право користування програмним забезпеченням ONLINE Service Manager на умовах обраного тарифу.</p>
+        </div>
+        <ol class="steps">
+          <li><span>1</span><div><strong>Оберіть тариф</strong><p>Визначте рівень функцій і строк дії ліцензії.</p></div></li>
+          <li><span>2</span><div><strong>Вкажіть контактний email</strong><p>Він використовується для акаунта, повідомлень і підтвердження покупки.</p></div></li>
+          <li><span>3</span><div><strong>Оплатіть через LiqPay</strong><p>Онлайн-оплата здійснюється у гривнях банківською карткою через захищену платіжну сторінку LiqPay.</p></div></li>
+          <li><span>4</span><div><strong>Отримайте ліцензію</strong><p>Після підтвердження платежу ліцензія та інструкція доставляються електронно на email або в акаунт користувача.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="returns" class="section section-dark">
+      <div class="container legal-grid">
+        <div>
+          <p class="eyebrow eyebrow-light">Умови повернення</p>
+          <h2>Звернення розглядаються відкрито й по суті</h2>
+          <p>Для подання заяви на повернення надішліть лист на <a href="mailto:onlineprojectlab@ukr.net">onlineprojectlab@ukr.net</a> із зазначенням ПІБ, email замовлення, дати, суми платежу та причини звернення.</p>
+        </div>
+        <div class="legal-points">
+          <div><strong>Ліцензію не надано</strong><p>Якщо цифровий продукт не був наданий у погоджений або розумний строк, покупець може вимагати надання або відмовитися від договору.</p></div>
+          <div><strong>Продукт не відповідає умовам</strong><p>Покупець може вимагати усунення невідповідності, пропорційного зменшення ціни або повернення коштів у випадках, передбачених законодавством.</p></div>
+          <div><strong>Строк розгляду</strong><p>Звернення підтверджується після отримання, перевіряється за даними платежу та опрацьовується без необґрунтованих затримок.</p></div>
+          <div><strong>Спосіб повернення</strong><p>Схвалене повернення здійснюється тим самим способом, яким було проведено оплату, якщо сторони не погодили інше.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="terms" class="section">
+      <div class="container legal-summary">
+        <div class="section-heading left">
+          <p class="eyebrow">Основні умови</p>
+          <h2>Що погоджує покупець</h2>
+        </div>
+        <div class="summary-grid">
+          <article><h3>Предмет замовлення</h3><p>Невиключна ліцензія на використання ONLINE Service Manager протягом строку обраного тарифу. Майнові права на програму покупцю не передаються.</p></article>
+          <article><h3>Укладення договору</h3><p>Оформлення замовлення, прийняття умов і здійснення оплати підтверджують укладення електронного договору між покупцем та продавцем.</p></article>
+          <article><h3>Робоче місце</h3><p>Стандартна ліцензія призначена для одного акаунта та одного робочого комп’ютера, якщо інше прямо не передбачено тарифом або окремою угодою.</p></article>
+          <article><h3>Підтримка</h3><p>Звернення щодо оплати, активації та роботи програми приймаються телефоном або email, указаними в розділі контактів.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="seller" class="section section-soft">
+      <div class="container seller-card">
+        <div class="seller-intro">
+          <p class="eyebrow">Про продавця</p>
+          <h2>Офіційні дані</h2>
+          <p>Розробка, ліцензування та технічна підтримка програмного забезпечення ONLINE Service Manager.</p>
+          <a class="text-link" href="seller.html">Повні відомості про продавця →</a>
+        </div>
+        <dl class="seller-details">
+          <div><dt>Продавець</dt><dd>ФОП Янковський Руслан Валентійович</dd></div>
+          <div><dt>РНОКПП</dt><dd>2904820498</dd></div>
+          <div><dt>Юридична адреса</dt><dd>Україна, 13401, Житомирська обл., м. Андрушівка, вул. І. Мазепи, буд. 1</dd></div>
+          <div><dt>IBAN</dt><dd>UA513052990000026008036400301</dd></div>
+          <div><dt>Банк</dt><dd>АТ КБ «ПриватБанк»</dd></div>
+          <div><dt>Статус ПДВ</dt><dd>Не є платником податку на додану вартість</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="contacts" class="section contact-section">
+      <div class="container contact-card">
+        <div>
+          <p class="eyebrow eyebrow-light">Контакти</p>
+          <h2>Ми на зв’язку</h2>
+          <p>Підтримка з питань придбання, активації, оплати та роботи програми.</p>
+        </div>
+        <div class="contact-links">
+          <a href="tel:+380965362536"><span>Телефон</span><strong>096&nbsp;536&nbsp;25&nbsp;36</strong></a>
+          <a href="mailto:onlineprojectlab@ukr.net"><span>Email</span><strong>onlineprojectlab@ukr.net</strong></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="online-logo.svg" alt="ONLINE Service Manager">
+        <strong>OnLine ProjectLab</strong>
+        <span>ONLINE Service Manager</span>
+        <p>Програмне забезпечення для керування сервісним центром.</p>
+      </div>
+      <div>
+        <h2>Інформація</h2>
+        <a href="#pricing">Тарифи та ціни</a>
+        <a href="#payment">Оплата і доставка</a>
+        <a href="#returns">Умови повернення</a>
+        <a href="#terms">Основні умови</a>
+      </div>
+      <div>
+        <h2>Продавець</h2>
+        <a href="#seller">Дані ФОП</a>
+        <a href="#contacts">Контакти</a>
+        <a href="mailto:onlineprojectlab@ukr.net">Підтримка</a>
       </div>
     </div>
-    <div class="hero-shot"><img src="program-screenshot.png" alt="ONLINE Service Manager"></div>
-  </div>
-</section>
-
-<section id="features" class="section">
-  <div class="section-card">
-    <p class="eyebrow">Можливості</p><h2>Все як у програмі — зрозуміло і практично</h2>
-    <div class="grid">
-      <div class="tile"><span>🛠</span><h3>Ремонти</h3><p>Прийом техніки, статуси, суми, передплати, історія ремонту.</p></div>
-      <div class="tile"><span>👥</span><h3>Клієнти</h3><p>База клієнтів, контакти, історія звернень і картки клієнтів.</p></div>
-      <div class="tile"><span>📄</span><h3>Документи</h3><p>Квитанції, гарантійні талони, договори та акти видачі.</p></div>
-      <div class="tile"><span>📦</span><h3>Склад</h3><p>Запчастини, залишки, надходження, списання та рух товарів.</p></div>
-      <div class="tile"><span>₴</span><h3>Фінанси</h3><p>Оплати, передплати, борги, витрати та денна каса.</p></div>
-      <div class="tile"><span>🧠</span><h3>База знань</h3><p>Моделі, типові несправності, нотатки та технічні матеріали.</p></div>
+    <div class="container footer-bottom">
+      <span>© 2026 OnLine ProjectLab</span>
+      <span>ФОП Янковський Руслан Валентійович · РНОКПП 2904820498</span>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section id="trial" class="section">
-  <div class="split">
-    <div class="section-card">
-      <p class="eyebrow">Trial</p><h2>Спочатку повний функціонал</h2>
-      <p class="lead dark">Під час пробного періоду майстер користується повним набором функцій. Після завершення обирає Basic, Pro, Cloud або Enterprise — тільки те, що реально потрібно.</p>
-    </div>
-    <div class="notice">
-      <h3>Beta Pro ключ</h3>
-      <p>Для перших тестів:</p>
-      <code>OSM-BETA-TEST-2026</code>
-      <p>У фінальній версії активація буде через ONLINE Cloud.</p>
-    </div>
-  </div>
-</section>
-
-<section id="pricing" class="section">
-  <div class="section-card">
-    <p class="eyebrow">Тарифи</p><h2>Оновлення відповідно до рівня доступу</h2>
-    <div class="pricing">
-      <div class="price"><h3>Basic</h3><p>Для невеликої майстерні.</p><ul><li>Ремонти</li><li>Клієнти</li><li>Документи</li><li>Базові QR</li></ul></div>
-      <div class="price featured"><h3>Pro</h3><p>Для активного сервісу.</p><ul><li>Все з Basic</li><li>Склад</li><li>Фінанси</li><li>Звіти</li><li>База знань</li></ul></div>
-      <div class="price"><h3>Cloud</h3><p>Для онлайн-роботи.</p><ul><li>Все з Pro</li><li>Кабінет клієнта</li><li>Синхронізація</li><li>Захищені QR</li></ul></div>
-      <div class="price"><h3>Enterprise</h3><p>Для мережі майстерень.</p><ul><li>Все з Cloud</li><li>Кілька філій</li><li>Ролі доступу</li><li>API</li></ul></div>
-    </div>
-  </div>
-</section>
-<section class="section">
-<div class="section-card" id="stats">
-  <p class="eyebrow">Статистика сайту</p>
-  <h2>Активність</h2>
-  <div class="stats">
-    <div class="stat blue"><small>Переглядів у цьому браузері</small><b id="siteViews">0</b></div>
-    <div class="stat green"><small>Кліків “Завантажити”</small><b id="downloadClicks">0</b></div>
-    <div class="stat orange"><small>Завантажень GitHub Release</small><b id="githubDownloads">—</b></div>
-    <div class="stat purple"><small>Trial</small><b>14 днів</b></div>
-  </div>
-</div>
-</section>
-</main>
-<footer class="footer"><div class="footer-card"><b>ONLINE Service Manager</b><span>Beta · ONLINE Cloud у розробці · Автоматичні оновлення</span></div></footer>
-</div></div>
-<script>
-function openStatus(event){
-  event.preventDefault();
-  const input=document.getElementById('repairCode');
-  const value=input?input.value.trim():'';
-  if(!value){alert('Введіть номер ремонту або QR-токен');return;}
-  const isRepair=value.toUpperCase().startsWith('R-');
-  const param=isRepair?'code':'token';
-  window.location.href='client.html?'+param+'='+encodeURIComponent(value);
-}
-(function(){
-  const p=new URLSearchParams(window.location.search);
-  const code=p.get('code'), token=p.get('token'), workshop=p.get('w');
-  const order=document.getElementById('orderNumber');
-  const tok=document.getElementById('tokenNumber');
-  const ws=document.getElementById('workshopId');
-  const st=document.getElementById('repairStatus');
-  const note=document.getElementById('clientNote');
-  if(token){
-    if(order)order.textContent='Захищений QR-токен';
-    if(tok)tok.textContent=token;
-    if(ws)ws.textContent=workshop||'ONLINE Cloud';
-    if(st)st.textContent='Очікує синхронізацію з ONLINE Cloud';
-    if(note)note.textContent='Після підключення ONLINE Cloud тут буде реальний статус ремонту.';
-    return;
-  }
-  if(code){if(order)order.textContent=code;if(st)st.textContent='Демо-режим';}
-})();
-
-// ONLINE Service Manager site statistics v1
-(function(){
-  const VIEW_KEY = 'osm_site_local_views';
-  const DOWNLOAD_KEY = 'osm_site_local_download_clicks';
-
-  function num(v){ return Number(v || 0); }
-  function setText(id, value){
-    const el = document.getElementById(id);
-    if(el) el.textContent = String(value);
-  }
-
-  const views = num(localStorage.getItem(VIEW_KEY)) + 1;
-  localStorage.setItem(VIEW_KEY, views);
-  setText('siteViews', views);
-
-  const downloads = num(localStorage.getItem(DOWNLOAD_KEY));
-  setText('downloadClicks', downloads);
-
-  document.querySelectorAll('[data-download-link="true"]').forEach(function(link){
-    link.addEventListener('click', function(){
-      const next = num(localStorage.getItem(DOWNLOAD_KEY)) + 1;
-      localStorage.setItem(DOWNLOAD_KEY, next);
-      setText('downloadClicks', next);
-    });
-  });
-
-  const api = 'https://api.github.com/repos/Yanik79/ONLINE-Service-Manager-v0.2.56/releases/tags/v0.2.56';
-  fetch(api).then(r => r.ok ? r.json() : null).then(data => {
-    if(!data || !data.assets) return;
-    let total = 0;
-    data.assets.forEach(a => total += Number(a.download_count || 0));
-    setText('githubDownloads', total);
-  }).catch(() => {
-    setText('githubDownloads', '—');
-  });
-})();
-
-</script>
-</body></html>
+  <script src="script.js"></script>
+</body>
+</html>

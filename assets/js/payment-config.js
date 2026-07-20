@@ -1,0 +1,1 @@
+window.PAYMENT_CONFIG={currency:['UAH','USD'],provider:'LiqPay',mode:'production'};
