@@ -113,7 +113,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.08;margin:0 0 14px;color:#0f2d52
       <h1>Завантажити <span>Beta</span></h1>
       <p class="lead">Встановіть програму, зареєструйте майстерню, отримайте Workshop ID і протестуйте повний функціонал у пробний період.</p>
       <div class="actions">
-        <a class="btn primary" data-download-link="true" href="update/latest/ONLINE-Service-Manager-Setup-v1.0.6.zip">⬇ Завантажити v1.0.6 Beta</a>
+        <a class="btn primary" data-download-link="true" href="update/latest/ONLINE-Service-Manager-Setup-v1.0.7.zip">⬇ Завантажити v1.0.7 Beta</a>
         <a class="btn blue" href="index.html#trial">Про Trial</a>
       </div>
     </div>
@@ -195,7 +195,7 @@ function openStatus(event){
     });
   });
 
-  const api = 'https://api.github.com/repos/Yanik79/ONLINE-Service-Manager-v1.0.6/releases/tags/v1.0.6';
+  const api = 'https://api.github.com/repos/Yanik79/ONLINE-Service-Manager-v1.0.7/releases/tags/v1.0.7';
   fetch(api).then(r => r.ok ? r.json() : null).then(data => {
     if(!data || !data.assets) return;
     let total = 0;
