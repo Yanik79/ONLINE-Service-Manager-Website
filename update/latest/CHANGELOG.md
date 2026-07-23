@@ -1,13 +1,10 @@
-# ONLINE Service Manager 1.0.11
+# ONLINE Service Manager 1.0.13
 
-Published: 2026-07-22T18:32:33
+Published: 2026-07-23T11:12:13
 Channel: stable
 
 ## Changes
-- Added:
-- - Workshop name and contacts.
-- - Call, map, and website buttons.
-- - Repair status timeline.
-- - Currency and readable date formatting.
-- - Automatic page refresh every 60 seconds.
-- - Responsive mobile layout.
+- Перший публічний Beta-реліз
+- Developer Suite v1.1
+- Website Publisher
+- Public Release Gate
