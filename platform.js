@@ -1,8 +1,15 @@
 (function(){
   'use strict';
-  const PROD_API='https://api.online-service-manager.com';
+  const CONFIG_URL='config/api.json';
+  let API='';
   const local=['localhost','127.0.0.1',''].includes(location.hostname);
-  const API=(local?'http://127.0.0.1:8088':PROD_API).replace(/\/$/,'');
+  let apiReady=(async()=>{
+    if(local){API='http://127.0.0.1:8088';return;}
+    const r=await fetch(CONFIG_URL,{cache:'no-store'});
+    if(!r.ok) throw new Error('API config load failed');
+    const c=await r.json();
+    API=String(c.api_url||'').replace(/\/$/,'');
+  })();
   const TOKEN_KEY='online_platform_token';
   const SESSION_KEY='online_platform_session';
   const REMEMBER_KEY='online_platform_remember_email';
@@ -20,6 +27,7 @@
   function logout(){setToken('');setSession(null);location.href='login.html'}
   function authHeaders(){return token()?{'Authorization':'Bearer '+token(),'Content-Type':'application/json'}:{'Content-Type':'application/json'}}
   async function api(path,options){
+    await apiReady;
     const response=await fetch(API+path,Object.assign({headers:authHeaders(),cache:'no-store'},options||{}));
     let data={};try{data=await response.json()}catch(e){}
     if(response.status===401){setToken('');setSession(null);if(!location.pathname.endsWith('login.html'))location.href='login.html?expired=1';throw new Error('Сесію завершено')}
