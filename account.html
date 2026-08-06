@@ -11,6 +11,177 @@
 <section class="card" id="devicesCard"><h2 class="section-title">Активація робочого місця</h2><p class="muted">Створіть одноразовий код і введіть його у програмі на вкладці «Резервний код».</p><button id="codeBtn" class="btn btn-blue full">Створити одноразовий код</button><div id="activationCode" class="activation-code hidden">—</div><div id="codeStatus" class="form-status"></div></section></div>
 <div class="card" style="margin-top:14px"><h2 class="section-title">Платежі та LiqPay</h2><p class="muted">Кабінет уже готовий приймати стан підписки з Cloud API. Наступним етапом підключимо створення замовлення LiqPay, callback та автоматичну активацію тарифу.</p></div>
 </main></div></div><script src="platform.js"></script><script>
-(function(){const P=window.ONLINE_PLATFORM;if(!P.token()){location.href='login.html';return}const params=new URLSearchParams(location.search),welcomeBox=document.getElementById('registeredWelcome');if(params.get('registered')==='1'){welcomeBox.classList.remove('hidden')}document.getElementById('closeWelcome').addEventListener('click',()=>{welcomeBox.classList.add('hidden');history.replaceState({},'',location.pathname)});const s=P.session(),a=s.account||{},sub=s.subscription||{},w=s.workspace||{},raw=s.raw||{};const val=(...xs)=>xs.find(x=>x!==undefined&&x!==null&&String(x).trim()!=='')||'—';document.getElementById('welcome').textContent='Вітаємо, '+val(a.full_name,a.owner_name,a.email,'користувачу');document.getElementById('owner').textContent=val(a.full_name,a.owner_name,raw.owner_name);document.getElementById('accountEmail').textContent=val(a.email,raw.email);document.getElementById('accountId').textContent=val(a.id,a.account_id,raw.account_id);document.getElementById('workspace').textContent=val(w.name,w.title,w.id,raw.workspace_name);document.getElementById('plan').textContent=val(sub.plan_code,sub.plan,raw.plan_code,raw.plan);const status=String(val(sub.status,sub.subscription_status,raw.subscription_status,raw.status)).toLowerCase();const pill=document.getElementById('statusPill');pill.textContent=status==='—'?'Немає даних':status;pill.classList.add(['active','paid','trial'].includes(status)?'active':'warning');document.getElementById('expires').textContent=val(sub.expires_at,sub.valid_until,raw.expires_at);document.getElementById('devices').textContent=val(sub.devices_used&&sub.devices_limit?sub.devices_used+' / '+sub.devices_limit:undefined,raw.devices_used&&raw.devices_limit?raw.devices_used+' / '+raw.devices_limit:undefined,sub.device_limit,raw.device_limit);
-const btn=document.getElementById('codeBtn'),box=document.getElementById('activationCode'),st=document.getElementById('codeStatus');function show(t,type){st.textContent=t;st.className='form-status show '+type}btn.addEventListener('click',async()=>{btn.disabled=true;show('Створюємо код…','ok');try{const d=await P.createActivationCode();const code=d.activation_code||d.code;if(!code)throw new Error('Сервер не повернув код');box.textContent=code;box.classList.remove('hidden');show('Код готовий. Він одноразовий.','ok')}catch(e){show('Не вдалося створити код: '+e.message,'error')}finally{btn.disabled=false}})})();
+(function(){
+  const P=window.ONLINE_PLATFORM;
+  if(!P.token()){
+    location.href='login.html';
+    return
+  }
+
+  const params=new URLSearchParams(location.search);
+  const welcomeBox=document.getElementById('registeredWelcome');
+
+  if(params.get('registered')==='1'){
+    welcomeBox.classList.remove('hidden')
+  }
+
+  document.getElementById('closeWelcome').addEventListener('click',()=>{
+    welcomeBox.classList.add('hidden');
+    history.replaceState({},'',location.pathname)
+  });
+
+  const s=P.session(),a=s.account||{},w=s.workspace||{},raw=s.raw||{};
+  const val=(...xs)=>xs.find(x=>x!==undefined&&x!==null&&String(x).trim()!=='')||'—';
+
+  document.getElementById('welcome').textContent='Вітаємо, '+val(a.full_name,a.owner_name,a.email,'користувачу');
+  document.getElementById('owner').textContent=val(a.full_name,a.owner_name,raw.owner_name);
+  document.getElementById('accountEmail').textContent=val(a.email,raw.email);
+  document.getElementById('accountId').textContent=val(a.id,a.account_id,raw.account_id);
+  document.getElementById('workspace').textContent=val(w.name,w.title,w.id,raw.workspace_name);
+
+  const pill=document.getElementById('statusPill');
+  let currentLicense=null;
+
+  function showSubscriptionEmpty(){
+    document.getElementById('plan').textContent='—';
+    pill.textContent='Немає даних';
+    pill.className='status-pill warning';
+    document.getElementById('expires').textContent='—';
+    document.getElementById('devices').textContent='—'
+  }
+
+  function formatDate(value){
+    if(!value)return '—';
+    const date=new Date(value);
+    if(Number.isNaN(date.getTime()))return String(value);
+    return new Intl.DateTimeFormat('uk-UA',{
+      day:'2-digit',
+      month:'2-digit',
+      year:'numeric'
+    }).format(date)
+  }
+
+  function planLabel(code){
+    const labels={
+      BASIC_6:'Basic — 6 місяців',
+      BASIC_12:'Basic — 12 місяців',
+      PRO_6:'Pro — 6 місяців',
+      PRO_12:'Pro — 12 місяців',
+      CLOUD_6:'Cloud — 6 місяців',
+      CLOUD_12:'Cloud — 12 місяців',
+      CLOUD_MONTH:'Cloud — 1 місяць',
+      CLOUD_YEAR:'Cloud — 1 рік',
+      TRIAL:'Пробний'
+    };
+    return labels[code]||code||'—'
+  }
+
+  function deviceLimit(code){
+    const limits={
+      TRIAL:1,
+      BASIC_6:1,
+      BASIC_12:1,
+      PRO_6:2,
+      PRO_12:2,
+      CLOUD_6:3,
+      CLOUD_12:3,
+      CLOUD_MONTH:1,
+      CLOUD_YEAR:1
+    };
+    return limits[code]||1
+  }
+
+  function renderLicense(license){
+    currentLicense=license;
+    const status=String(license.status||'').toLowerCase();
+    document.getElementById('plan').textContent=planLabel(license.plan_code);
+    pill.textContent=status==='active'?'Активна':(status||'Немає даних');
+    pill.className='status-pill '+(status==='active'?'active':'warning');
+    document.getElementById('expires').textContent=formatDate(license.expires_at);
+    document.getElementById('devices').textContent='0 / '+deviceLimit(license.plan_code)
+  }
+
+  async function refreshAccountState(){
+    try{
+      const licenses=await P.api('/api/v1/licenses/me');
+      const list=Array.isArray(licenses)?licenses:[];
+      const active=list.find(item=>
+        String(item.product_code||'').toUpperCase()==='ONLINE_SM' &&
+        String(item.status||'').toLowerCase()==='active'
+      ) || list.find(item=>String(item.status||'').toLowerCase()==='active') || list[0];
+
+      if(active){
+        renderLicense(active);
+        const nextSession=P.session();
+        nextSession.subscription={
+          plan_code:active.plan_code,
+          status:active.status,
+          expires_at:active.expires_at,
+          license_key:active.license_key,
+          product_code:active.product_code,
+          device_limit:deviceLimit(active.plan_code)
+        };
+        P.setSession(nextSession)
+      }else{
+        showSubscriptionEmpty()
+      }
+    }catch(error){
+      const fallback=(P.session().subscription||{});
+      if(fallback.plan_code||fallback.status){
+        renderLicense({
+          plan_code:fallback.plan_code,
+          status:fallback.status,
+          expires_at:fallback.expires_at,
+          license_key:fallback.license_key,
+          product_code:fallback.product_code
+        })
+      }else{
+        showSubscriptionEmpty()
+      }
+    }
+  }
+
+  const btn=document.getElementById('codeBtn');
+  const box=document.getElementById('activationCode');
+  const st=document.getElementById('codeStatus');
+
+  function show(text,type){
+    st.textContent=text;
+    st.className='form-status show '+type
+  }
+
+  btn.addEventListener('click',async()=>{
+    btn.disabled=true;
+    show('Створюємо код…','ok');
+    try{
+      if(!currentLicense){
+        await refreshAccountState()
+      }
+      if(!currentLicense||!currentLicense.license_key){
+        throw new Error('Активну ліцензію не знайдено')
+      }
+
+      const data=await P.api('/activation-codes',{
+        method:'POST',
+        body:JSON.stringify({
+          license_key:currentLicense.license_key,
+          product_code:currentLicense.product_code||'ONLINE_SM'
+        })
+      });
+
+      const code=data.activation_code||data.code;
+      if(!code)throw new Error('Сервер не повернув код');
+
+      box.textContent=code;
+      box.classList.remove('hidden');
+      show('Код готовий. Він одноразовий.','ok')
+    }catch(error){
+      show('Не вдалося створити код: '+error.message,'error')
+    }finally{
+      btn.disabled=false
+    }
+  });
+
+  refreshAccountState();
+})();
 </script></body></html>
