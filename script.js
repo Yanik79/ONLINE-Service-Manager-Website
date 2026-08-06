@@ -173,6 +173,17 @@
       }
     }
 
+    function clearExpiredSession() {
+      try {
+        localStorage.removeItem('online_platform_token');
+        localStorage.removeItem('online_platform_session');
+        sessionStorage.setItem(
+          'online_platform_return_url',
+          location.pathname + location.search
+        );
+      } catch (error) {}
+    }
+
     async function apiJson(path, options) {
       const response = await fetch(apiBase + path, Object.assign({
         headers: authHeaders(),
@@ -180,6 +191,13 @@
       }, options || {}));
       let data = {};
       try { data = await response.json(); } catch (error) {}
+      if (response.status === 401) {
+        clearExpiredSession();
+        const reason = data.detail || data.message || 'Сесію завершено';
+        const authError = new Error(reason);
+        authError.code = 'AUTH_EXPIRED';
+        throw authError;
+      }
       if (!response.ok) {
         throw new Error(data.detail || data.message || ('Cloud API HTTP ' + response.status));
       }
@@ -250,6 +268,13 @@
 
         setResult('Платіжний провайдер ще не підключено.', true);
       } catch (error) {
+        if (error && error.code === 'AUTH_EXPIRED') {
+          setResult('Сесію завершено. Зараз відкриємо сторінку входу…', true);
+          window.setTimeout(function () {
+            location.href = 'login.html?expired=1';
+          }, 900);
+          return;
+        }
         setResult('Не вдалося провести тестову оплату: ' + error.message, true);
       } finally {
         payButton.disabled = false;
