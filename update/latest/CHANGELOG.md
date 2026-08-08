@@ -1,10 +1,6 @@
-# ONLINE Service Manager 1.0.20
+# ONLINE Service Manager 1.0.21
 
-Published: 2026-07-31T18:57:31
+Published: 2026-08-08T14:55:03
 Channel: stable
 
 ## Changes
-- Перший публічний Beta-реліз
-- Developer Suite v1.1
-- Website Publisher
-- Public Release Gate
