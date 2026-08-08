@@ -262,7 +262,55 @@
         }
 
         if (paymentMode === 'LIQPAY') {
-          setResult('LiqPay підключено, але production-створення платіжної форми ще не реалізоване в Cloud API.', true);
+          payButton.textContent = 'Створюємо замовлення LiqPay…';
+          setResult('Створюємо платіжне замовлення та відкриваємо захищену сторінку LiqPay…', false);
+
+          const order = await apiJson('/api/v1/payments/orders', {
+            method: 'POST',
+            body: JSON.stringify({
+              product_code: 'ONLINE_SM',
+              plan_code: price.code,
+              provider: 'LIQPAY'
+            })
+          });
+
+          payButton.textContent = 'Готуємо LiqPay Checkout…';
+          const checkout = await apiJson('/api/v1/payments/liqpay/checkout/' + order.order_id, {
+            method: 'POST',
+            body: '{}'
+          });
+
+          if (!checkout.checkout_url || !checkout.data || !checkout.signature) {
+            throw new Error('Cloud API не повернув повні дані LiqPay Checkout');
+          }
+
+          try {
+            localStorage.setItem('online_liqpay_pending_order', JSON.stringify({
+              order_id: order.order_id,
+              order_reference: order.order_reference,
+              plan_code: price.code
+            }));
+          } catch (error) {}
+
+          const liqpayForm = document.createElement('form');
+          liqpayForm.method = 'POST';
+          liqpayForm.action = checkout.checkout_url;
+          liqpayForm.style.display = 'none';
+
+          const dataInput = document.createElement('input');
+          dataInput.type = 'hidden';
+          dataInput.name = 'data';
+          dataInput.value = checkout.data;
+          liqpayForm.appendChild(dataInput);
+
+          const signatureInput = document.createElement('input');
+          signatureInput.type = 'hidden';
+          signatureInput.name = 'signature';
+          signatureInput.value = checkout.signature;
+          liqpayForm.appendChild(signatureInput);
+
+          document.body.appendChild(liqpayForm);
+          liqpayForm.submit();
           return;
         }
 
@@ -275,7 +323,7 @@
           }, 900);
           return;
         }
-        setResult('Не вдалося провести тестову оплату: ' + error.message, true);
+        setResult('Не вдалося розпочати оплату: ' + error.message, true);
       } finally {
         payButton.disabled = false;
         if (paymentMode === 'TEST') payButton.textContent = 'Провести тестову оплату';

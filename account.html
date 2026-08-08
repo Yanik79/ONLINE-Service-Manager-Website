@@ -8,7 +8,7 @@
 <div class="dashboard-head"><div><p class="eyebrow">ONLINE Account</p><h1 id="welcome">Мій кабінет</h1><p class="muted">Керуйте підпискою та активацією ONLINE Service Manager.</p></div><div class="dashboard-actions"><a class="btn btn-primary" href="pricing.html">Обрати тариф</a><a class="btn btn-blue" href="download.html">Завантажити програму</a></div></div>
 <div class="cards"><article class="card metric"><div class="label">Тариф</div><div class="value" id="plan">—</div></article><article class="card metric"><div class="label">Статус</div><div class="value"><span id="statusPill" class="status-pill">—</span></div></article><article class="card metric"><div class="label">Діє до</div><div class="value" id="expires">—</div></article><article class="card metric"><div class="label">Робочі місця</div><div class="value" id="devices">—</div></article></div>
 <div class="grid-2"><section class="card" id="profile"><h2 class="section-title">Профіль</h2><div class="details"><div class="detail"><span>Власник</span><strong id="owner">—</strong></div><div class="detail"><span>Email</span><strong id="accountEmail">—</strong></div><div class="detail"><span>Workspace</span><strong id="workspace">—</strong></div><div class="detail"><span>ID акаунта</span><strong id="accountId">—</strong></div></div></section>
-<section class="card" id="devicesCard"><h2 class="section-title">Активація робочого місця</h2><p class="muted">Створіть одноразовий код і введіть його у програмі на вкладці «Резервний код».</p><button id="codeBtn" class="btn btn-blue full">Створити одноразовий код</button><div id="activationCode" class="activation-code hidden">—</div><div id="codeStatus" class="form-status"></div></section></div>
+<section class="card" id="devicesCard"><h2 class="section-title">Активація робочого місця</h2><p class="muted">Створіть одноразовий код і введіть його у програмі на вкладці «Резервний код».</p><button id="codeBtn" class="btn btn-blue full">Створити одноразовий код</button><div id="activationCode" class="activation-code hidden">—</div><div id="codeStatus" class="form-status"></div><div id="deviceList" style="margin-top:14px"></div></section></div>
 <div class="card" style="margin-top:14px"><h2 class="section-title">Платежі та LiqPay</h2><p class="muted">Кабінет уже готовий приймати стан підписки з Cloud API. Наступним етапом підключимо створення замовлення LiqPay, callback та автоматичну активацію тарифу.</p></div>
 </main></div></div><script src="platform.js"></script><script>
 (function(){
@@ -101,6 +101,40 @@
     document.getElementById('devices').textContent='0 / '+deviceLimit(license.plan_code)
   }
 
+  function renderDevices(items){
+    const list=Array.isArray(items)?items:[];
+    const active=list.filter(item=>item&&item.is_active!==false);
+    const limit=currentLicense?deviceLimit(currentLicense.plan_code):1;
+    document.getElementById('devices').textContent=active.length+' / '+limit;
+    const host=document.getElementById('deviceList');
+    if(!host)return;
+    if(!list.length){
+      host.innerHTML='<p class="muted">Активованих робочих місць ще немає.</p>';
+      return
+    }
+    const rows=list.map(item=>{
+      const name=String(item.device_name||'ONLINE Service Manager');
+      const fp=String(item.device_fingerprint||'');
+      const shortFp=fp.length>22?fp.slice(0,10)+'…'+fp.slice(-8):fp;
+      const status=item.is_active===false?'Неактивне':'Активне';
+      const last=formatDate(item.last_seen_at);
+      return '<div class="detail"><span>'+P.esc(name)+'</span><strong>'+P.esc(status)+'</strong></div>'+
+        '<div class="detail"><span>Fingerprint</span><strong>'+P.esc(shortFp||'—')+'</strong></div>'+
+        '<div class="detail"><span>Останній зв’язок</span><strong>'+P.esc(last)+'</strong></div>';
+    }).join('');
+    host.innerHTML='<h3 style="margin:0 0 8px">Робочі місця</h3><div class="details">'+rows+'</div>'
+  }
+
+  async function refreshDevices(){
+    try{
+      const items=await P.api('/api/v1/devices/me?product_code=ONLINE_SM');
+      renderDevices(Array.isArray(items)?items:[])
+    }catch(error){
+      const host=document.getElementById('deviceList');
+      if(host)host.innerHTML='<p class="muted">Не вдалося оновити список робочих місць.</p>'
+    }
+  }
+
   async function refreshAccountState(){
     try{
       const licenses=await P.api('/api/v1/licenses/me');
@@ -182,6 +216,6 @@
     }
   });
 
-  refreshAccountState();
+  refreshAccountState().then(refreshDevices);
 })();
 </script></body></html>
