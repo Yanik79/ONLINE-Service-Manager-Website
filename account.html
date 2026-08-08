@@ -178,10 +178,43 @@
   const btn=document.getElementById('codeBtn');
   const box=document.getElementById('activationCode');
   const st=document.getElementById('codeStatus');
+  let codeTimerId=null;
 
   function show(text,type){
     st.textContent=text;
     st.className='form-status show '+type
+  }
+
+  function stopCodeTimer(){
+    if(codeTimerId!==null){
+      clearInterval(codeTimerId);
+      codeTimerId=null
+    }
+  }
+
+  function startCodeTimer(expiresAt){
+    stopCodeTimer();
+    const expiry=new Date(expiresAt);
+    if(Number.isNaN(expiry.getTime())){
+      show('Код готовий. Він одноразовий. Використайте його одразу.','ok');
+      return
+    }
+
+    const tick=()=>{
+      const remaining=Math.max(0,Math.ceil((expiry.getTime()-Date.now())/1000));
+      const minutes=String(Math.floor(remaining/60)).padStart(2,'0');
+      const seconds=String(remaining%60).padStart(2,'0');
+      if(remaining<=0){
+        stopCodeTimer();
+        show('Термін дії коду завершився. Створіть новий одноразовий код.','error');
+        btn.textContent='Створити новий код';
+        return
+      }
+      show('Одноразовий код діє ще '+minutes+':'+seconds+'. Введіть його у програмі до завершення відліку.','ok')
+    };
+
+    tick();
+    codeTimerId=setInterval(tick,1000)
   }
 
   btn.addEventListener('click',async()=>{
@@ -208,7 +241,8 @@
 
       box.textContent=code;
       box.classList.remove('hidden');
-      show('Код готовий. Він одноразовий.','ok')
+      btn.textContent='Створити новий код';
+      startCodeTimer(data.expires_at)
     }catch(error){
       show('Не вдалося створити код: '+error.message,'error')
     }finally{
