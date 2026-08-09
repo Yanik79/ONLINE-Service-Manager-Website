@@ -1,1 +1,70 @@
-<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ONLINE Mobile — Android</title><style>body{margin:0;font-family:"Segoe UI Variable Text","Segoe UI Variable","Segoe UI",Arial,sans-serif;background:#f3f6fa;color:#0f172a}.w{min-height:100vh;display:grid;place-items:center;padding:24px}.c{max-width:700px;background:#fff;border:1px solid #d6e4f5;border-radius:22px;padding:34px}img{height:58px}h1{font-size:42px;letter-spacing:-.03em}p{color:#64748b;font-size:17px;line-height:1.6}.n{padding:16px;border-radius:14px;background:#eaf4ff;border:1px solid #bfd9f5;color:#0b4ea2}a{display:inline-flex;margin-top:20px;padding:13px 17px;border:1px solid #d6e4f5;border-radius:11px;text-decoration:none;color:#0f172a;font-weight:700}</style></head><body><main class="w"><section class="c"><img src="../../online-logo.svg" alt="ONLINE"><h1>ONLINE Mobile — Android</h1><p>Мобільний клієнт ONLINE Service Manager працюватиме через ONLINE Account та ONLINE Cloud.</p><div class="n"><b>Статус:</b> APK ще не опубліковано. Після тестування тут з’явиться актуальна Android-версія.</div><a href="../">← ONLINE Mobile</a></section></main></body></html>
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ONLINE Mobile — Android</title>
+<meta name="robots" content="index,follow">
+<style>
+:root{--b:#1565c0;--b2:#1e88e5;--bg:#f3f6fa;--text:#0f172a;--muted:#64748b;--line:#d6e4f5;--green:#208a3c}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI Variable Text","Segoe UI Variable","Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+.w{min-height:100vh;display:grid;place-items:center;padding:24px}
+.c{width:min(760px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 18px 50px rgba(22,77,135,.10)}
+.logo{height:58px;max-width:100%}
+h1{font-size:clamp(34px,6vw,48px);letter-spacing:-.03em;margin:24px 0 10px}
+p{color:var(--muted);font-size:17px;line-height:1.6}
+.status{padding:16px;border-radius:14px;background:#eefaf1;border:1px solid #b9e4c4;color:#166b2b;margin:18px 0}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.meta div{border:1px solid var(--line);border-radius:12px;padding:14px}
+.meta b{display:block;color:#0b4ea2;margin-bottom:4px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+a.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:11px;text-decoration:none;font-weight:800}
+.primary{background:var(--b2);color:#fff;border:1px solid var(--b2)}
+.back{background:#fff;color:var(--text);border:1px solid var(--line)}
+.small{font-size:13px;color:var(--muted);word-break:break-all}
+@media(max-width:620px){.c{padding:24px}.meta{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="w">
+<section class="c">
+<img class="logo" src="../../online-logo.svg" alt="ONLINE">
+<h1>ONLINE Mobile — Android</h1>
+<p>Актуальний APK ONLINE Service Manager. Сторінка автоматично отримує посилання та версію з файлу <b>latest.json</b>.</p>
+
+<div class="status" id="status"><b>Перевіряємо актуальний реліз…</b></div>
+
+<div class="meta">
+<div><b>Версія</b><span id="version">—</span></div>
+<div><b>Розмір</b><span id="size">—</span></div>
+</div>
+
+<div class="actions">
+<a class="btn primary" id="download" href="ONLINE-Mobile.apk" download>⬇ Завантажити APK</a>
+<a class="btn back" href="../">← ONLINE Mobile</a>
+</div>
+
+<p class="small" id="checksum"></p>
+</section>
+</main>
+
+<script>
+(function(){
+  function mb(bytes){return (Number(bytes||0)/1024/1024).toFixed(1)+' MB';}
+  fetch('latest.json?ts='+Date.now(),{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(function(m){
+      document.getElementById('version').textContent=m.version_display||m.version||'—';
+      document.getElementById('size').textContent=mb(m.size_bytes);
+      document.getElementById('download').href=m.download_url||'ONLINE-Mobile.apk';
+      document.getElementById('status').innerHTML='<b>APK доступний для завантаження</b>';
+      document.getElementById('checksum').textContent='SHA256: '+(m.sha256||'—');
+    })
+    .catch(function(){
+      document.getElementById('status').innerHTML='<b>APK опубліковано.</b> Якщо дані версії ще не оновились, оновіть сторінку через кілька хвилин.';
+    });
+})();
+</script>
+</body>
+</html>
