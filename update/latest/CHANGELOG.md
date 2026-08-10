@@ -1,6 +1,7 @@
-# ONLINE Service Manager 1.0.23
+# ONLINE Service Manager 1.0.24
 
-Published: 2026-08-08T16:55:03
+Published: 2026-08-10T17:37:10
 Channel: stable
 
 ## Changes
+- Добавлено apk
