@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "platform": "android",
-  "version": "0.1.6+7",
-  "version_display": "0.1.6 (7)",
+  "version": "0.1.7+8",
+  "version_display": "0.1.7 (8)",
   "filename": "ONLINE-Mobile.apk",
   "download_url": "ONLINE-Mobile.apk",
   "public_url": "https://online-projectlab.pp.ua/mobile/android/ONLINE-Mobile.apk",
   "size_bytes": 51421580,
-  "sha256": "347679646991c3db56eeaac85248cd2dab95f0cefe2cfda1a917ec036ff3abac",
-  "published_at": "2026-08-12T12:34:12+00:00"
+  "sha256": "19a121449e426d2abdea7aecc6c3b5a42fa9360c1392dfb4e4f7e3d582894e87",
+  "published_at": "2026-08-12T13:03:12+00:00"
 }
