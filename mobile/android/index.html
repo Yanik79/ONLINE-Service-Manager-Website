@@ -38,6 +38,7 @@ a.btn{display:inline-flex;align-items:center;justify-content:center;min-height:4
 <div class="meta">
 <div><b>Версія</b><span id="version">—</span></div>
 <div><b>Розмір</b><span id="size">—</span></div>
+<div><b>Файл релізу</b><span id="filename">—</span></div>
 </div>
 
 <div class="actions">
@@ -57,8 +58,10 @@ a.btn{display:inline-flex;align-items:center;justify-content:center;min-height:4
     .then(function(m){
       document.getElementById('version').textContent=m.version_display||m.version||'—';
       document.getElementById('size').textContent=mb(m.size_bytes);
+      document.getElementById('filename').textContent=m.filename||'ONLINE-Mobile.apk';
       document.getElementById('download').href=m.download_url||'ONLINE-Mobile.apk';
-      document.getElementById('status').innerHTML='<b>APK доступний для завантаження</b>';
+      document.getElementById('download').setAttribute('download',m.filename||'ONLINE-Mobile.apk');
+      document.getElementById('status').innerHTML='<b>APK доступний для завантаження — '+(m.filename||'ONLINE-Mobile.apk')+'</b>';
       document.getElementById('checksum').textContent='SHA256: '+(m.sha256||'—');
     })
     .catch(function(){
