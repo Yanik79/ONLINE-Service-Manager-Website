@@ -1,0 +1,8 @@
+{
+  "product": "OnLine NovaShop",
+  "product_code": "ONLINE_NOVASHOP",
+  "version": "0.1.1",
+  "download_url": "/novashop/update/latest/OnLine-NovaShop-Setup.zip",
+  "version_json": "/novashop/update/latest/version.json",
+  "sha256": "/novashop/update/latest/SHA256.txt"
+}

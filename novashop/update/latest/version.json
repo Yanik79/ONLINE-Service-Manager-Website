@@ -1,0 +1,27 @@
+{
+  "product": "OnLine NovaShop",
+  "product_code": "ONLINE_NOVASHOP",
+  "version": "0.1.1",
+  "latest": "0.1.1",
+  "channel": "stable",
+  "published": "2026-08-21T17:09:27",
+  "file": "OnLine-NovaShop-v0.1.1.zip",
+  "filename": "OnLine-NovaShop-v0.1.1.zip",
+  "url": "OnLine-NovaShop.zip",
+  "stable_file": "OnLine-NovaShop.zip",
+  "versioned_file": "OnLine-NovaShop-v0.1.1.zip",
+  "sha256": "f7e546921077407279fa62b0d6596f689ce45efa77e0743c82197cfb3060988a",
+  "size": 56135370,
+  "package_type": "update",
+  "setup_file": "OnLine-NovaShop-Setup-v0.1.1.zip",
+  "setup_url": "OnLine-NovaShop-Setup.zip",
+  "setup_stable_file": "OnLine-NovaShop-Setup.zip",
+  "setup_sha256": "0b65fb151d65338446de7677e1efeb478d0eeab81f48daf6021d8cce519fe191",
+  "setup_size": 56135370,
+  "notes": [
+    "Перший публічний Beta-реліз",
+    "Developer Suite v1.1",
+    "Website Publisher",
+    "Public Release Gate"
+  ]
+}
